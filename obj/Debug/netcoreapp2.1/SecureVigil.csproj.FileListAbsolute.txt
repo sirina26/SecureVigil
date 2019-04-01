@@ -1,0 +1,10 @@
+C:\Dev\SecureVigil\SecureVigil\bin\Debug\netcoreapp2.1\SecureVigil.deps.json
+C:\Dev\SecureVigil\SecureVigil\bin\Debug\netcoreapp2.1\SecureVigil.runtimeconfig.json
+C:\Dev\SecureVigil\SecureVigil\bin\Debug\netcoreapp2.1\SecureVigil.runtimeconfig.dev.json
+C:\Dev\SecureVigil\SecureVigil\bin\Debug\netcoreapp2.1\SecureVigil.dll
+C:\Dev\SecureVigil\SecureVigil\bin\Debug\netcoreapp2.1\SecureVigil.pdb
+C:\Dev\SecureVigil\SecureVigil\obj\Debug\netcoreapp2.1\SecureVigil.csproj.CoreCompileInputs.cache
+C:\Dev\SecureVigil\SecureVigil\obj\Debug\netcoreapp2.1\SecureVigil.AssemblyInfoInputs.cache
+C:\Dev\SecureVigil\SecureVigil\obj\Debug\netcoreapp2.1\SecureVigil.AssemblyInfo.cs
+C:\Dev\SecureVigil\SecureVigil\obj\Debug\netcoreapp2.1\SecureVigil.dll
+C:\Dev\SecureVigil\SecureVigil\obj\Debug\netcoreapp2.1\SecureVigil.pdb
