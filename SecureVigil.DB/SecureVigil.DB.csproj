@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Scripts\20190405.Install-tPasswordUser.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\20190405.Install-tPasswordUser.sql" />
+    <None Remove="Scripts\20190405.Install-tUser.sql" />
+    <None Remove="Scripts\20190405.Install-vClient.sql" />
+    <None Remove="Scripts\20190405.Install-vContrat.sql" />
+    <None Remove="Scripts\20190405.Install-vMission.sql" />
+    <None Remove="Scripts\20190405.Install-vZone.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Scripts\20190405.Install-tPasswordUser.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\20190405.Install-vClient.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-vContrat.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-vZone.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-sqlserver" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+  </ItemGroup>
+
+</Project>
