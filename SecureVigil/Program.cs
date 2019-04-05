@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace SecureVigil1.WebApp
+namespace SecureVigil.WebApp
 {
     class Program
     {

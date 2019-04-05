@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using System.Text;
 using SecureVigil.DAL;
 using SecureVigil.WebApp.Authentication;
