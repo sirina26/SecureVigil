@@ -21,7 +21,7 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email, u.[Password] from weddingplanner.vUsers u where u.UserId = @UserId",
+                    "select u.UserId, u.Email, u.[Password] from SecureVigil.vUsers u where u.UserId = @UserId",
                     new { UserId = userId } );
             }
         }
@@ -31,7 +31,7 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QuerySingleAsync<bool>(
-                "select u.IsOrganizer from weddingplanner.vUsers u where u.UserId = @UserId",
+                "select u.IsOrganizer from SecureVigil.vUsers u where u.UserId = @UserId",
                 new { UserId = userId } );
             }
         }
@@ -42,7 +42,7 @@ namespace SecureVigil.DAL
             {
                 return
                     await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email,u.[Password] from weddingplanner.vUsers u where u.Email = @Email",
+                    "select u.UserId, u.Email,u.[Password] from SecureVigil.vUsers u where u.Email = @Email",
                     new { Email = email } );
             }
         }
@@ -59,7 +59,7 @@ namespace SecureVigil.DAL
                 p.Add( "@LastName", LastName );
                 p.Add( "@UserId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
-                await con.ExecuteAsync( "weddingplanner.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
+                await con.ExecuteAsync( "SecureVigil.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
 
                 int status = p.Get<int>( "@Status" );
                 if( status == 1 ) return Result.Failure<int>( Status.BadRequest, "An account with this email already exists." );
@@ -73,14 +73,14 @@ namespace SecureVigil.DAL
                 {
                     c.Add( "@CustomerId", id );
                     c.Add( "@EventId", 0 );
-                    await con.ExecuteAsync( "weddingplanner.sCustomersCreate", c, commandType: CommandType.StoredProcedure );
+                    await con.ExecuteAsync( "SecureVigil.sCustomersCreate", c, commandType: CommandType.StoredProcedure );
 
                 }
                 else
                 {
                     c.Add( "@OrganizerId", id );
                     c.Add( "@PhoneNumber", 0 );
-                    await con.ExecuteAsync( "weddingplanner.sOrganizersCreate", c, commandType: CommandType.StoredProcedure );
+                    await con.ExecuteAsync( "SecureVigil.sOrganizersCreate", c, commandType: CommandType.StoredProcedure );
                 }
                 return Result.Success( p.Get<int>( "@UserId" ) );
 
@@ -92,7 +92,7 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<string>(
-                    "select p.ProviderName from weddingplanner.vAuthenticationProvider p where p.UserId = @UserId",
+                    "select p.ProviderName from SecureVigil.vAuthenticationProvider p where p.UserId = @UserId",
                     new { UserId = userId } );
             }
         }
@@ -101,7 +101,7 @@ namespace SecureVigil.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                await con.ExecuteAsync( "weddingplanner.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure );
+                await con.ExecuteAsync( "SecureVigil.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure );
             }
         }
 
@@ -110,7 +110,7 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 await con.ExecuteAsync(
-                    "weddingplanner.sUserUpdate",
+                    "SecureVigil.sUserUpdate",
                     new { UserId = userId, Email = email },
                     commandType: CommandType.StoredProcedure );
             }
@@ -121,7 +121,7 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 await con.ExecuteAsync(
-                    "weddingplanner.sPasswordUserUpdate",
+                    "SecureVigil.sPasswordUserUpdate",
                     new { UserId = userId, Password = password },
                     commandType: CommandType.StoredProcedure );
             }
