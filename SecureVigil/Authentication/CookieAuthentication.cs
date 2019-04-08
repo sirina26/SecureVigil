@@ -1,4 +1,4 @@
-namespace WeddingPlanner.WebApp.Authentication
+namespace SecureVigil.WebApp.Authentication
 {
     public class CookieAuthentication
     {

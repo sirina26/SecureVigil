@@ -12,6 +12,6 @@ namespace SecureVigil.DAL
 
         public string GoogleId { get; set; }
 
-        public bool IsOrganizer { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
