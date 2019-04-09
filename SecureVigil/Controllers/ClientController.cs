@@ -16,5 +16,6 @@ namespace SecureVigil.WebApp.Controllers
 
     public class ClientController
     {
+
     }
 }
