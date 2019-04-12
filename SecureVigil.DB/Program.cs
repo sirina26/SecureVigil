@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Reflection;
 using DbUp;
 using Microsoft.Extensions.Configuration;
 
-namespace SecureVigil
+namespace SecureVigil.DB
 {
-    class Program
+    public class Program
     {
         static IConfiguration _configuration;
 

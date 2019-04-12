@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WeddingPlanner.WebApp.Models.AccountViewModels
+namespace SecureVigil.WebApp.Models.AccountViewModels
 {
     public class LoginViewModel
     {

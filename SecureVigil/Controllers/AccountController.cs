@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 
-namespace WeddingPlanner.WebApp.Controllers
+
+namespace SecureVigil.WebApp.Controllers
 {
     public class AccountController : Controller
     {
