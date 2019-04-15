@@ -40,7 +40,7 @@ namespace SecureVigil.DAL
         }
 
 
-        public async Task<Result<int>> Create( int clientId, string firstName, string lastName, DateTime clientPhone, float clientAdresse)
+        public async Task<Result<int>> Create( int clientId, string firstName, string lastName, string clientPhone, string clientAdresse)
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -78,7 +78,7 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result> Update( int clientId, string firstName, string lastName, DateTime clientPhone, float clientAdresse )
+        public async Task<Result> Update( int clientId, string firstName, string lastName, string clientPhone, string clientAdresse )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {

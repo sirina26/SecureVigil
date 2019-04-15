@@ -6,20 +6,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SecureVigil.WebApp.Models.ClientViewModels
 {
-    public class ContratViewModels
+    public class MissionViewModels
     {
-        [Required]
-        [Display (Name = "Client")]
-        public int ClientId { get; set; }
+        public int MissionId { get; set; }
 
-        [Required]
-        [Display (Name = "Begin Date")]
+        public int ZoneId { get; set; }
+
         public DateTime BeginDate { get; set; }
 
-        [Required]
-        [Display (Name = "End Date")]
         public DateTime EndDate { get; set; }
 
-
+        public string MissionRules { get; set; }
     }
 }

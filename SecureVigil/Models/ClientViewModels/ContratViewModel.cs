@@ -6,17 +6,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SecureVigil.WebApp.Models.ClientViewModels
 {
-    public class ClientViewModels
+    public class ContratViewModel
     {
         public int ClientId { get; set; }
 
-        public string FirstName{ get; set; }
+        public int ContratId { get; set; }
 
-        public string LastName { get; set; }
+        public DateTime BeginDate { get; set; }
 
-        public string ClientPhone { get; set; }
-
-        public string ClientAdresse { get; set; }
+        public DateTime EndDate { get; set; }
 
     }
 }
