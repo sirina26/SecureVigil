@@ -1,20 +1,37 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SecureVigile.DAL;
 
 namespace SecureVigile.WebApp
 {
     public class Startup
     {
+        readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration )
+        {
+            _configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices( IServiceCollection services )
         {
+            services.AddMvc();
+
+            services.Configure<DbOptions>( o =>
+            {
+                o.ConnectionString = _configuration["ConnectionStrings:SecureVigile"];
+            } );
+
+            services.AddSingleton<ZoneGateway>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,10 +42,7 @@ namespace SecureVigile.WebApp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run( async ( context ) =>
-             {
-                 await context.Response.WriteAsync( "Hello World!" );
-             } );
+            app.UseMvc();
         }
     }
 }
