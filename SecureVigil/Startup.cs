@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Claims;
 using System.Text;
 using SecureVigil.DAL;
@@ -11,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-
+using System;
 
 namespace SecureVigil.WebApp
 {
@@ -31,10 +32,8 @@ namespace SecureVigil.WebApp
             services.AddOptions();
 
             services.AddMvc();
-            services.AddSingleton(_ => new UserGateway(Configuration["ConnectionStrings:WeddingPlannerDB"]));
-            services.AddSingleton(_ => new EventGateway(Configuration["ConnectionStrings:WeddingPlannerDB"]));
-            services.AddSingleton(_ => new WishListeGateway(Configuration["ConnectionStrings:WeddingPlannerDB"]));
-            services.AddSingleton(_ => new CommentGateway(Configuration["ConnectionStrings:WeddingPlannerDB"]));
+            services.AddSingleton(_ => new UserGateway(Configuration["ConnectionStrings:SecureVigilDB"] ));
+            services.AddSingleton(_ => new ClientGateway(Configuration["ConnectionStrings:SecureVigilDB"] ));                        
 
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<UserService>();

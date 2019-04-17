@@ -6,7 +6,7 @@ using SecureVigil.WebApp.Models.ClientViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-
+using System.Collections.Generic;
 
 namespace SecureVigil.WebApp.Controllers
 {
@@ -22,12 +22,12 @@ namespace SecureVigil.WebApp.Controllers
             _clientGateway = clientGateway;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetClientList()
-        //{
-        //    IEnumerable<ClientData> result = await _clientGateway.GetAll();
-        //    return Ok( result );
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetClientList()
+        {
+            IEnumerable<ClientData> result = await _clientGateway.GetAll();
+            return Ok( result );
+        }
 
         [HttpGet( "{id}", Name = "GetClient" )]
         public async Task<IActionResult> GetClientById( int id )

@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Dapper;
 
-
 namespace SecureVigil.DAL
 {
     public class ClientGateway
@@ -18,7 +17,21 @@ namespace SecureVigil.DAL
             _connectionString = connectionString;
         }
 
-        
+        public async Task<IEnumerable<ClientData>> GetAll()
+        {
+            using( SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+                return await con.QueryAsync<ClientData>(
+                     @"select
+	                        s.FirstName,
+	                        s.LastName,
+	                        s.ClientPhone,
+	                        s.ClientAdresse,
+	                        s.Number
+                    FROM securevigil.vClient s ;" );
+            }
+        }
+
         public async Task<Result<ClientData>> FindById( int clientId )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
@@ -38,7 +51,6 @@ namespace SecureVigil.DAL
                 return Result.Success( eventi );
             }
         }
-
 
         public async Task<Result<int>> Create( int clientId, string firstName, string lastName, string clientPhone, string clientAdresse)
         {
@@ -61,12 +73,12 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result> Delete( int eventId )
+        public async Task<Result> Delete( int clientId )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@ClientId", eventId );
+                p.Add( "@ClientId", clientId );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sClientDelete", p, commandType: CommandType.StoredProcedure );
 
