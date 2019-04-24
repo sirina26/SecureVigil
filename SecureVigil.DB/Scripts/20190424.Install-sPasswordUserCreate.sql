@@ -9,7 +9,7 @@ begin
 	set transaction isolation level serializable;
 	begin tran;
 
-	if exists(select * from iti.tUser u where u.Email = @Email)
+	if exists(select * from securevigil.tUser u where u.Email = @Email)
 	begin
 		rollback;
 		return 1;

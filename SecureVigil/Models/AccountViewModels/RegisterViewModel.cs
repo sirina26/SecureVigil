@@ -4,14 +4,7 @@ namespace SecureVigil.WebApp.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
-        [Display( Name = "FirstName" )]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display( Name = "LastName" )]
-        public string LastName { get; set; }
-
+      
         [Required]
         [EmailAddress]
         [Display( Name = "Email" )]
@@ -26,11 +19,7 @@ namespace SecureVigil.WebApp.Models.AccountViewModels
         [DataType( DataType.Password )]
         [Display( Name = "Confirm password" )]
         [Compare( "Password", ErrorMessage = "The password and confirmation password do not match." )]
-        public string ConfirmPassword { get; set; }
-
-        [Required]
-        [Display (Name = "User type")]
-        public bool UserType { get; set; }
+        public string ConfirmPassword { get; set; }       
 
     }
 }
