@@ -6,7 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Scripts\20190329.Create-schema-securevigil.sql" />
+    <EmbeddedResource Include="Scripts\20190329.Install-tClient.sql" />
+    <EmbeddedResource Include="Scripts\20190329.Install-tContrat.sql" />
+    <EmbeddedResource Include="Scripts\20190329.Install-tZone.sql" />
+    <EmbeddedResource Include="Scripts\20190401.Install-tMission.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-tUser.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-vContrat.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-vMission.sql" />
+    <EmbeddedResource Include="Scripts\20190405.Install-vZone.sql" />
+    <EmbeddedResource Include="Scripts\20190408.Install-tPasswordUser.sql" />
+    <EmbeddedResource Include="Scripts\20190408.Install-vClient.sql" />
+    <EmbeddedResource Include="Scripts\20190412.Install-ClientDelete.sql" />
+    <EmbeddedResource Include="Scripts\20190412.Install-sClientCreate.sql" />
+    <EmbeddedResource Include="Scripts\20190412.Install-sClientUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20190417.Install-sZoneCreate.sql" />
+    <EmbeddedResource Include="Scripts\20190417.Install-sZoneDelete.sql" />
+    <EmbeddedResource Include="Scripts\20190417.Install-sZoneUpdate.sql" />
   </ItemGroup>
 
  

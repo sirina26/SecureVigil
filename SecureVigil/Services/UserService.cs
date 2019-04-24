@@ -15,11 +15,11 @@ namespace SecureVigil.WebApp.Services
             _passwordHasher = passwordHasher;
         }
 
-        public Task<Result<int>> CreatePasswordUser( string firstName, string lastName, string email, string password, bool userType )
+        public Task<Result<int>> CreatePasswordUser( string email, string password )
         {
-            return _userGateway.CreatePasswordUser( firstName, lastName, email, _passwordHasher.HashPassword( password ), userType );
+            return _userGateway.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
         }
-       
+
         public async Task<UserData> FindUser( string email, string password )
         {
             UserData user = await _userGateway.FindByEmail( email );
@@ -27,10 +27,8 @@ namespace SecureVigil.WebApp.Services
             {
                 return user;
             }
+
             return null;
         }
-        
     }
 }
-
-

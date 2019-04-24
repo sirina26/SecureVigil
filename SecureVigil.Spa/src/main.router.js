@@ -17,7 +17,6 @@ const routes = [
     
     { path: '/login', component: Login },
     { path: '/logout', component: Logout, beforeEnter: requireAuth },
-    { path: '/playground', component: PlaygroundPage },
            
 ];
 

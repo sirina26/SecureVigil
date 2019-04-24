@@ -101,7 +101,7 @@ class AuthService {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            }    
         });
         if (result.ok) {
             let token = await result.json();

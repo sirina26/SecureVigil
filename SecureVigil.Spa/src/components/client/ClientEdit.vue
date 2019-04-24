@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mb-4">
-            <h1 v-if="mode == 'create'">Créer un évènement</h1>
+            <h1 v-if="mode == 'create'">Créer un client</h1>
             <h1 v-else>Editer un évènement</h1>
         </div>
 
@@ -9,7 +9,7 @@
 
             <template v-if="item !== null">
                 <div class="form-group">
-                    <label class="required">Nom de l'évènement</label>
+                    <label class="required">Nom de client</label>
                     <input type="text" v-model="item.eventName" class="form-control" required>
                 </div>
 

@@ -19,7 +19,7 @@ namespace SecureVigil.WebApp.Controllers
         readonly UserGateway _userGateway;
         readonly UserService _userService;
         readonly TokenService _tokenService;
-        readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;  
+        readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
         readonly Random _random;
         readonly IOptions<SpaOptions> _spaOptions;
 
@@ -56,8 +56,9 @@ namespace SecureVigil.WebApp.Controllers
                 await SignIn( user.Email, user.UserId.ToString() );
                 return RedirectToAction( nameof( Authenticated ) );
             }
+
             return View( model );
-        }        
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -73,8 +74,7 @@ namespace SecureVigil.WebApp.Controllers
         {
             if( ModelState.IsValid )
             {
-
-                Result<int> result = await _userService.CreatePasswordUser( model.FirstName, model.LastName, model.Email, model.Password, model.UserType );
+                Result<int> result = await _userService.CreatePasswordUser( model.Email, model.Password );
                 if( result.HasError )
                 {
                     ModelState.AddModelError( string.Empty, result.ErrorMessage );

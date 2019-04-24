@@ -47,16 +47,14 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> CreatePasswordUser( string FirstName, string LastName, string email, byte[] password,bool userType )
+        public async Task<Result<int>> CreatePasswordUser(string email, byte[] password)
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 int id;
                 var p = new DynamicParameters();
                 p.Add( "@Email", email );
-                p.Add( "@Password", password );
-                p.Add( "@FirstName", FirstName );
-                p.Add( "@LastName", LastName );
+                p.Add( "@Password", password );             
                 p.Add( "@UserId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "SecureVigil.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
@@ -68,20 +66,7 @@ namespace SecureVigil.DAL
                
                 id= p.Get<int>( "@UserId" );
                 var c = new DynamicParameters();
-
-                if( userType == true )
-                {
-                    c.Add( "@CustomerId", id );
-                    c.Add( "@EventId", 0 );
-                    await con.ExecuteAsync( "SecureVigil.sCustomersCreate", c, commandType: CommandType.StoredProcedure );
-
-                }
-                else
-                {
-                    c.Add( "@OrganizerId", id );
-                    c.Add( "@PhoneNumber", 0 );
-                    await con.ExecuteAsync( "SecureVigil.sOrganizersCreate", c, commandType: CommandType.StoredProcedure );
-                }
+               
                 return Result.Success( p.Get<int>( "@UserId" ) );
 
             }
