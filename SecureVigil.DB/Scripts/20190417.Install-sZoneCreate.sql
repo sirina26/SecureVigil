@@ -2,8 +2,8 @@ create procedure securevigil.sZoneCreate
 (
     @ZoneName nvarchar (30),
     @ZoneAdresse nvarchar (30),
-    @ZoneLongitude nvarchar (30),
-    @ZoneLatitude nvarchar (30),
+    @Longitude float,
+    @Latitude float,
     @ZoneId int out,
     @ContratId int out
 )
@@ -13,9 +13,9 @@ begin
     begin tran;
 
     insert into securevigil.tZone
-                (ZoneId, ContratId, ZoneName, ZoneAdresse)
+                (ZoneId, ContratId, ZoneName, ZoneAdresse, Longitude, Latitude)
     values
-                (@ZoneId, @ContratId, @ZoneName, @ZoneAdresse);
+                (@ZoneId, @ContratId, @ZoneName, @ZoneAdresse, @Longitude, @Latitude);
 
                 set @ZoneId = scope_identity();
 
