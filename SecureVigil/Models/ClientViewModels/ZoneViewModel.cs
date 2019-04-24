@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-namespace SecureVigil.WebApp.Models.ZoneViewModels
+namespace SecureVigil.WebApp.Models.ZoneViewModel
 {
-    public class ZoneViewModels
+    public class ZoneViewModel
     {
         public int ContratId { get; set; }
 

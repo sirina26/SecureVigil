@@ -1,6 +1,7 @@
 
 
 using Dapper;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -12,12 +13,20 @@ namespace SecureVigil.DAL
     {
         readonly string _connectionString;
 
-        public ZoneGateway(string connectionString )
+        public ZoneGateway( string connectionString )
         {
             _connectionString = connectionString;
         }
 
-        public async Task<Result<int>> Create(int zoneId, int contratId, string zoneName, string zoneAdresse, string zoneLongitude, string zoneLatitude )
+        public async Task<IEnumerable<ZoneData>> GetAll()
+        {
+            using( SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+                return await con.QueryAsync<ZoneData>( "Select * from securevigil.vZone" );
+            }
+        }
+
+        public async Task<Result<int>> Create(int zoneId, int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
         {
             using (SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -26,8 +35,8 @@ namespace SecureVigil.DAL
                 z.Add( "@ContratId", contratId );
                 z.Add( "@ZoneName", zoneName );
                 z.Add( "@ZoneAdresse", zoneAdresse );
-                z.Add( "@ZoneLongitude", zoneLongitude );
-                z.Add( "@ZoneLatitude", zoneLatitude );
+                z.Add( "@Longitude", zoneLongitude );
+                z.Add( "@Latitude", zoneLatitude );
                 z.Add( "@ZoneId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 z.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sZoneCreate", z, commandType: CommandType.StoredProcedure );
@@ -56,7 +65,7 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result> Update(int zoneId, int contratId, string zoneName, string zoneAdresse, string zoneLongitude, string zoneLatitude )
+        public async Task<Result> Update(int zoneId, int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
         {
             using(SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -65,8 +74,8 @@ namespace SecureVigil.DAL
                 z.Add( "@ContratId", contratId );
                 z.Add( "@ZoneName", zoneName );
                 z.Add( "@ZoneAdresse", zoneAdresse );
-                z.Add( "@ZoneLongitude", zoneLongitude );
-                z.Add( "@ZoneLatitude", zoneLatitude );
+                z.Add( "@Longitude", zoneLongitude );
+                z.Add( "@Latitude", zoneLatitude );
                 z.Add( "@status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sZoneUpdate", z, commandType: CommandType.StoredProcedure );
 
