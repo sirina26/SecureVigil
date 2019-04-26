@@ -11,7 +11,6 @@ import Login from './components/Login.vue'
 import Logout from './components/Logout.vue'
 
 
-
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
