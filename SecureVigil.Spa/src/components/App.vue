@@ -11,17 +11,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="auth.isConnected">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
+                            <router-link class="nav-link" to="/client/" v-if="type == false">Client</router-link>
+                        </li>
+                        <li class="nav-item">
                             <router-link class="nav-link" to="/contrat/" v-if="type == false">Contrat</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to="/mission/">Mission</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/toto/">toto</router-link>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <router-link class="nav-link" to="/messaging/">Gestion des Message</router-link>
-                        </li> -->
+                            <router-link class="nav-link" to="/zone/">Zone</router-link>
+                        </li>                      
                     </ul>
 
                     <ul class="navbar-nav my-2 my-md-0">
