@@ -29,24 +29,25 @@ namespace SecureVigil.WebApp.Controllers
             return Ok( result );
         }
 
-        [HttpGet( "{id}", Name = "GetClient" )]
-        public async Task<IActionResult> GetClientById( int id )
-        {
-            Result<ClientData> result = await _clientGateway.FindById( id );
-            return this.CreateResult( result );
-        }
+        //[HttpGet( "{id}", Name = "GetClient" )]
+        //public async Task<IActionResult> GetClientById( int id )
+        //{
+        //    Result<ClientData> result = await _clientGateway.FindById( id );
+        //    return this.CreateResult( result );
+        //}
 
         [HttpPost]
         public async Task<IActionResult> CreateClient ( [FromBody] ClientViewModel model )
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
-            Result<int> result = await _clientGateway.Create( model.ClientId, model.FirstName, model.LastName,
-                model.ClientPhone, model.ClientAdresse );               
-            return this.CreateResult( result, o =>
-            {
-                o.RouteName = "GetClient";
-                o.RouteValues = id => new { id };
-            } );
+            Result<int> result = await _clientGateway.Create( model.FirstName, model.LastName,
+                model.ClientPhone, model.ClientAdresse );
+            return Ok( result.Content );
+            //return this.CreateResult( result, o =>
+            //{
+            //    o.RouteName = "GetClient";
+            //    o.RouteValues = id => new { id };
+            //} );
         }
 
         [HttpPut( "{id}" )]

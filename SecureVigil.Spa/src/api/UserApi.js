@@ -7,6 +7,6 @@ export async function getUserIdAsync() {
     return await getAsync(`${endpoint}/GetUserId`);
 }
 
-export async function getUserTypeAsync() {
-    return await getAsync(`${endpoint}/GetUserType`);
-}
+// export async function getUserTypeAsync() {
+//     return await getAsync(`${endpoint}/GetUserType`);
+// }

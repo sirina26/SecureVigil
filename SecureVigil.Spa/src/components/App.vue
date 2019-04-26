@@ -1,5 +1,6 @@
 <template>
-    <div id="app" :class="classObject" class="main">
+    <!-- <div id="app" :class="classObject" class="main"> -->
+    <div id="app">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <router-link class="navbar-brand" to="/">Secure Vigil</router-link>
@@ -11,10 +12,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="auth.isConnected">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/client/" v-if="type == false">Client</router-link>
+                            <router-link class="nav-link" to="/client/" >Client</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/contrat/" v-if="type == false">Contrat</router-link>
+                            <router-link class="nav-link" to="/contrat/" >Contrat</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to="/mission/">Mission</router-link>
@@ -53,21 +54,22 @@
 import AuthService from '../services/AuthService'
 import '../directives/requiredProviders'
 import { state } from "../state"
-import {getUserIdAsync, getUserTypeAsync} from'../api/UserApi'
+//import {getUserIdAsync, getUserTypeAsync} from'../api/UserApi'
+import {getUserIdAsync} from'../api/UserApi'
 
 
 export default {
     data() {
         return {
             state,
-            type: false,
+            //type: false,
         }
     }, 
-    async beforeUpdate() { 
-            if (AuthService.isConnected) {
-                this.type = await getUserTypeAsync();
-            }
-        },
+    // async beforeUpdate() { 
+    //         if (AuthService.isConnected) {
+    //             this.type = await getUserTypeAsync();
+    //         }
+    //     },
 
     computed: {
         auth: () => AuthService,
@@ -76,12 +78,12 @@ export default {
             return this.state.isLoading;
         },
 
-        classObject() {
-            return {
-                'customer-background': !this.type,
-                'organizer-background': this.type
-            }
-        }
+        // classObject() {
+        //     return {
+        //         'customer-background': !this.type,
+        //         'organizer-background': this.type
+        //     }
+        // }
     }
 }
 </script>

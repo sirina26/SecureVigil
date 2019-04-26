@@ -2,51 +2,40 @@
     <div>
         <div class="mb-4">
             <h1 v-if="mode == 'create'">Créer un client</h1>
-            <h1 v-else>Editer un évènement</h1>
+            <h1 v-else>Editer profil d'un client</h1>
         </div>
 
         <form @submit="onSubmit($event)">
 
             <template v-if="item !== null">
                 <div class="form-group">
-                    <label class="required">Nom de client</label>
-                    <input type="text" v-model="item.eventName" class="form-control" required>
-                </div>
+                    <label class="required">Nom</label>
+                    <input type="text" v-model="item.lastName" class="form-control" required>
+                </div>   
+
+                 <div class="form-group">
+                    <label class="required">Prénom </label>
+                    <input type="text" v-model="item.firstName" class="form-control" required>
+                </div>  
 
                 <div class="form-group">
-                    <label class="required">Place de l'évènement</label>
-                    <input type="text" v-model="item.place" class="form-control" required>
-                </div>
+                    <label class="required">Numéro de téléphone</label>
+                    <input type="text" v-model="item.clientPhone" class="form-control" required>
+                </div>  
 
-                <div class="form-group">
-                    <label class="required">Nombre d'invités</label>
-                    <input type="number" v-model="item.numberOfGuestes" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="required">Prix maximum</label>
-                    <input type="float" v-model="item.maximumPrice" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="required">Remarques</label>
-                    <input type="text" v-model="item.note" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="required">Date de l'évènement </label>
-                    <input type="date" v-model="item.weddingDate" class="form-control" required>
-                </div>
-            </template>
-            
+                 <div class="form-group">
+                    <label class="required">Adresse</label>
+                    <input type="text" v-model="item.clientAdresse" class="form-control" required>
+                </div>           
+               
             <button type="submit" class="btn btn-primary">Sauvegarder</button>
-
+            </template>
         </form>
     </div>
 </template>
 
 <script>
-    import { getEventAsync, createEventAsync, updateEventAsync } from '../../api/eventApi'
+    import { getClientAsync, createClientAsync, updateClientAsync } from '../../api/clientApi'
     import { DateTime } from 'luxon'
 
     export default {
@@ -54,7 +43,7 @@
             return {
                 item: {},
                 mode: null,
-                eventid: null,
+                clientid: null,
                 errors: [],
             }
         },
@@ -62,11 +51,10 @@
         async mounted() {
             
             this.mode = this.$route.params.mode;
-            this.eventid = this.$route.params.id;
+            this.clientid = this.$route.params.id;
             if(this.mode == 'edit') {
                 try {
-                    const item = await getEventAsync(this.eventid);
-                    item.weddingDate = DateTime.fromISO(item.weddingDate).toFormat('yyyy-MM-dd');
+                    const item = await getClientAsync(this.clientid);
                     this.item = item;
                  
                 }
@@ -84,22 +72,15 @@
                 e.preventDefault();
 
                 var errors = [];
-                
-                if (isNaN(parseFloat(this.item.maximumPrice)))
-                    alert("Prix maximum n'est pas valide!");
-                          
-                if(!this.item.birthDate)
-                    errors.push("Date de naissance");
-      
-                this.errors = errors;
+                //this.errors = errors;
 
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
-                            await createEventAsync(this.item);
+                            await createClientAsync(this.item);
                         }
                         else {
-                            await updateEventAsync(this.item);
+                            await updateClientAsync(this.item);
                             debugger;
                         }
 

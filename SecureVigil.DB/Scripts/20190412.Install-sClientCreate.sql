@@ -13,10 +13,10 @@ begin
 	begin tran;
 
 	insert into securevigil.tClient
-                   (ClientId, FirstName, LastName,
+                   (FirstName, LastName,
                     ClientPhone, ClientAdresse)
         values
-                    (@ClientId,@FirstName,@LastName,
+                    (@FirstName,@LastName,
                     @ClientPhone,@ClientAdresse);
 
                     set @ClientId = scope_identity();

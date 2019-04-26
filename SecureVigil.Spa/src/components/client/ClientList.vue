@@ -1,56 +1,32 @@
 <template>
     <div>
         <div class="mb-4 d-flex justify-content-between">
-            <h1>Gestion d'événement </h1>
+            <h1>Gestion de client </h1>
             <div>
-                <router-link class="btn btn-primary" :to="`./create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
+                <router-link class="btn btn-primary" :to="`./create`"><i class="fa fa-plus"></i> Ajouter un client </router-link>
             </div>
         </div>
 
-        <table class="table-light table-striped table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr> 
-                    <th>Nom de l'évènement</th>
-                    <th>Nom de Client</th>
-                    <th>Endroit</th>
-                    <th>Prix maximum </th>
-                    <th>Date </th> 
-                    <th>Nombre d'invités</th>
-                    <th>Remarques</th>
-                    <th>Option</th>   
-                    <th>Commentaire</th>                 
+                    <th>Nom</th>                                  
+                    <th>Prénom</th>               
+                    <th>Numéro de téléphone</th>               
+                    <th>Adresse</th>               
                 </tr>
             </thead>
 
             <tbody>
-                <tr v-if="eventList.length == 0">
-                    <td colspan="6" class="text-center">Il n'y a actuellement aucun event.</td>
+                <tr v-if="clientList.length == 0">
+                    <td colspan="6" class="text-center">Il n'y a actuellement aucun client.</td>
                 </tr>
 
-                <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
-                    
-                    <td>{{ i.eventName }}</td>
-                    <td>{{ i.firstName }}</td>
-                    <td>{{ i.place }}</td>
-                    <td>{{ i.maximumPrice }}€</td>
-                    <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
-                    <td>{{ i.numberOfGuestes }}</td>
-                    <td>{{ i.note }}</td>                     
-                    <td> 
-                        <a @click="deleteEvent(i.eventId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
-                        <router-link :to="`./comment/${i.eventId}`" v-if="type === true"><i class="fa fa-comments-o"></i></router-link>
-                        <router-link :to="`event/edit/${i.eventId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
-                    </td>  
-                    <ul>
-                        <li v-for="j in commentList" v-if="i.eventId==j.eventId">
-                           <h5>{{j.firstName}}</h5>
-                            Email: {{j.email}}<br>
-                            Proposition: {{j.proposition}}<br>
-                            Date: {{new Date(j.propositionDate).toLocaleDateString()}} à
-                            {{new Date(j.propositionDate).toLocaleTimeString()}}
-                            <br><br>
-                        </li>
-                    </ul>
+                <tr  v-for="i of clientList">
+                    <td>{{ i.firsttName }}</td>     
+                    <td>{{ i.lasttName }}</td>                    
+                    <td>{{ i.clientPhone}}</td>                                   
+                    <td>{{ i.clientAdresse }}</td>                    
                 </tr>               
             </tbody>
         </table>
@@ -68,24 +44,22 @@
 </template>
 
 <script>
-    import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
-    import {getCommentListAsync} from '../../api/commentApi'
+    import { getClientAsync, deleteClientAsync } from '../../api/clientApi'
     import AuthService from '../../services/AuthService'
-    import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
+    //import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
+    import {getUserIdAsync} from'../../api/UserApi'
 
     export default {
         data() {
             return {
-                eventList:[],
-                commentList:[],
+                clientList:[],
                 pageNumber: 0, 
                 id : 0,
-                type : true
             }
         },
         props:{
             size:{
-            type:Number,
+            //type:Number,
             required:false,
             default: 4
             }
@@ -94,7 +68,7 @@
            
             await this.refreshList();
             this.id = await getUserIdAsync();     
-            this.type = await getUserTypeAsync();  
+//            this.type = await getUserTypeAsync();  
              
             if(this.mode == 'edit') {
                 try {
@@ -106,7 +80,7 @@
                 }
                 catch(e) {
                     console.error(e);
-                    this.$router.replace('/event');
+                    this.$router.replace('/client');
                 }
             }
 
@@ -116,9 +90,9 @@
             
             async refreshList() {
                 try {   
-                    this.commentList = await getCommentListAsync();
-                    this.eventList = await getEventListAsync();
-                    console.log(this.eventList);
+                    // this.commentList = await getCommentListAsync();
+                    this.clientList = await getClientAsync();
+                    console.log(this.clientList);
                     // console.log(this.commentList.propositionDate);
                 }
                 catch(e) {
@@ -126,9 +100,9 @@
                 }
             },
 
-            async deleteEvent(eventId) {
+            async deleteClient(clientId) {
                 try {
-                    await deleteEventAsync(eventId);
+                    await deleteClientAsync(clientId);
                     await this.refreshList();
                 }
                 catch(e) {
@@ -148,9 +122,9 @@
         {
             auth: () => AuthService,
             pageCount(){  
-                if(this.eventList !== "undefined")          
+                if(this.clientList !== "undefined")          
                 {
-                    let l = this.eventList.length,
+                    let l = this.clientList.length,
                     s = this.size;
                     return Math.floor(l/s);
                 }
@@ -159,10 +133,10 @@
             paginatedData(){
                 const start = this.pageNumber * this.size,
                 end = start + this.size;
-                return this.eventList.slice(start, end);
+                return this.clientList.slice(start, end);
             } 
         }  
-    }
+     }
 </script>
 
 <style lang="scss">

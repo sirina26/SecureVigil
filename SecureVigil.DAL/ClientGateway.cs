@@ -32,32 +32,31 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<ClientData>> FindById( int clientId )
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                ClientData eventi = await con.QueryFirstOrDefaultAsync<ClientData>(
-                    @"select
-                               s.FirstName,
-                               s.LastName,
-                               s.ClientPhone,
-                               s.ClientAdresse
+        //public async Task<Result<ClientData>> FindById( int clientId )
+        //{
+        //    using( SqlConnection con = new SqlConnection( _connectionString ) )
+        //    {
+        //        ClientData eventi = await con.QueryFirstOrDefaultAsync<ClientData>(
+        //            @"select
+        //                       s.FirstName,
+        //                       s.LastName,
+        //                       s.ClientPhone,
+        //                       s.ClientAdresse
 
-                      from securevigil.vClient s
-                      where s.ClientId = @ClientId;",
-                    new { ClientId = clientId } );
+        //              from securevigil.vClient s
+        //              where s.ClientId = @ClientId;",
+        //            new { ClientId = clientId } );
 
-                if( eventi == null ) return Result.Failure<ClientData>( Status.NotFound, "Client not found." );
-                return Result.Success( eventi );
-            }
-        }
+        //        if( eventi == null ) return Result.Failure<ClientData>( Status.NotFound, "Client not found." );
+        //        return Result.Success( eventi );
+        //    }
+        //}
 
-        public async Task<Result<int>> Create( int clientId, string firstName, string lastName, string clientPhone, string clientAdresse)
+        public async Task<Result<int>> Create(string firstName, string lastName, string clientPhone, string clientAdresse)
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@clientId", clientId );
                 p.Add( "@firstName", firstName );
                 p.Add( "@lastName", lastName );
                 p.Add( "@clientPhone", clientPhone );

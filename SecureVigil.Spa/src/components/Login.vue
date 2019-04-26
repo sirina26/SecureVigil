@@ -10,7 +10,7 @@
 
 <script>
 import AuthService from '../services/AuthService'
-import {getUserTypeAsync} from'../api/UserApi'
+//import {getUserTypeAsync} from'../api/UserApi'
 
 
 export default {
