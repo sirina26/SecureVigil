@@ -34,6 +34,7 @@ namespace SecureVigil.WebApp
             services.AddMvc();
             services.AddSingleton(_ => new UserGateway(Configuration["ConnectionStrings:SecureVigilDB"] ));
             services.AddSingleton(_ => new ClientGateway(Configuration["ConnectionStrings:SecureVigilDB"] ));                        
+            services.AddSingleton(_ => new ContratGateway(Configuration["ConnectionStrings:SecureVigilDB"] ));                        
 
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<UserService>();

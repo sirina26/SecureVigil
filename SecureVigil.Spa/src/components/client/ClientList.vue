@@ -23,8 +23,8 @@
                 </tr>
 
                 <tr  v-for="i of clientList">
-                    <td>{{ i.firsttName }}</td>     
-                    <td>{{ i.lasttName }}</td>                    
+                    <td>{{ i.firstName }}</td>     
+                    <td>{{ i.lastName }}</td>                    
                     <td>{{ i.clientPhone}}</td>                                   
                     <td>{{ i.clientAdresse }}</td>                    
                 </tr>               
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-    import { getClientAsync, deleteClientAsync } from '../../api/clientApi'
+    import { getClientAsync,getClientListAsync, deleteClientAsync } from '../../api/clientApi'
     import AuthService from '../../services/AuthService'
     //import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
     import {getUserIdAsync} from'../../api/UserApi'
@@ -59,6 +59,10 @@
         },
         props:{
             size:{
+                 clientList:{
+                type:Array,
+                required:true
+            },
             //type:Number,
             required:false,
             default: 4
@@ -91,7 +95,7 @@
             async refreshList() {
                 try {   
                     // this.commentList = await getCommentListAsync();
-                    this.clientList = await getClientAsync();
+                    this.clientList = await getClientListAsync();
                     console.log(this.clientList);
                     // console.log(this.commentList.propositionDate);
                 }
@@ -126,6 +130,7 @@
                 {
                     let l = this.clientList.length,
                     s = this.size;
+                    console.log(this.clientList.values);
                     return Math.floor(l/s);
                 }
                 

@@ -42,12 +42,7 @@ namespace SecureVigil.WebApp.Controllers
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _clientGateway.Create( model.FirstName, model.LastName,
                 model.ClientPhone, model.ClientAdresse );
-            return Ok( result.Content );
-            //return this.CreateResult( result, o =>
-            //{
-            //    o.RouteName = "GetClient";
-            //    o.RouteValues = id => new { id };
-            //} );
+            return Ok( result.Content );            
         }
 
         [HttpPut( "{id}" )]
