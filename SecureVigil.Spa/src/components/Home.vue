@@ -1,7 +1,7 @@
 <template>
     <section class="phot">
         <div class="container">
-            <h1 class="jumbotron-heading">Bienvenue sur Secure Vigil</h1>
+            <h1 class="jumbotron-heading">Bienvenue sur SekurTek</h1>
             <p>
              
             </p>

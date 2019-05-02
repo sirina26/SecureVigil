@@ -3,7 +3,7 @@
     <div id="app">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <router-link class="navbar-brand" to="/">Secure Vigil</router-link>
+                <router-link class="navbar-brand" to="/">SekurTek</router-link>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to="/zone/">Zone</router-link>
-                        </li>                      
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav my-2 my-md-0">

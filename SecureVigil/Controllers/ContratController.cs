@@ -48,6 +48,13 @@ namespace SecureVigil.WebApp.Controllers
             return Ok( result );
         }
 
+        [HttpGet("client/{id}")]
+        public async Task<IActionResult> GetContratByClientID(int id)
+        {
+            IEnumerable<ContratData> result = await _contratGateway.GetContratByClientId(id);
+            return Ok( result );
+        }
+
         [HttpDelete( "{id}" )]
         public async Task<IActionResult> DeleteContrat( int id )
         {

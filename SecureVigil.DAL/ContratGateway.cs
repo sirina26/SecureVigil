@@ -1,5 +1,3 @@
-
-
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -82,5 +80,14 @@ namespace SecureVigil.DAL
                 return Result.Success( Status.Ok );
             }
         }
+
+        public async Task<IEnumerable<ContratData>> GetContratByClientId(int id)
+        {
+            using(SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+                return await con.QueryAsync<ContratData>( "Select * from securevigil.vContrat where ClientId = @Id", new { Id = id} );
+            }
+        }
+
     }
 }
