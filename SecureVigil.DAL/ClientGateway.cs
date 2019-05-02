@@ -26,8 +26,7 @@ namespace SecureVigil.DAL
 	                        s.FirstName,
 	                        s.LastName,
 	                        s.ClientPhone,
-	                        s.ClientAdresse,
-	                        s.Number
+	                        s.ClientAdresse
                     FROM securevigil.vClient s ;" );
             }
         }

@@ -1,6 +1,6 @@
 using System;
 
-namespace SecureVigil
+namespace SecureVigil.DAL
 {
     public class ContratData
     {

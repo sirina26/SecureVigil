@@ -19,17 +19,22 @@ namespace SecureVigil.WebApp.Controllers
         readonly ContratGateway _contratGateway;
 
         public ContratController( ContratGateway contratGateway ) => _contratGateway = contratGateway;
+
+        [HttpGet]
+        public async Task<IActionResult> GetContratList()
+        {
+            IEnumerable<ContratData> result = await _contratGateway.GetAll();
+            return Ok( result );
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateContrat( [FromBody] ContratViewModel model )
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _contratGateway.Create(model.ClientId, model.BeginDate,
                 model.EndDate );
-            return this.CreateResult( result, o =>
-            {
-                o.RouteName = "GetContrat";
-                o.RouteValues = id => new { id };
-            } );
+            return Ok( result.Content );
+
         }
 
         [HttpPut( "{id}" )]
