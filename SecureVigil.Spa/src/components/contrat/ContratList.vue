@@ -23,8 +23,8 @@
                 </tr>
 
                 <tr  v-for="i of contratList">
-                    <td>{{ i.contratId }}</td>     
-                    <td>{{ i.clientId }}</td>                    
+                    <td>{{ i.firstName }}</td>     
+                    <td>{{ i.lastName }}</td>                    
                     <td>{{ i.beginDate}}</td>                                   
                     <td>{{ i.endDate }}</td>                    
                 </tr>               

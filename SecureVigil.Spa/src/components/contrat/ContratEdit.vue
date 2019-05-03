@@ -9,15 +9,15 @@
 
             <template v-if="item !== null">
                 <div class="form-group">
-                    <label class="required">Nom de client</label>
                     <input type="text" v-model="item.clientId" class="form-control" required>
                 </div>   
 
-                 <!-- <div class="form-group">
-                    <label class="required">Prénom de client</label>
-                    <input type="text" v-model="item.clientId" class="form-control" required>
-                </div>   -->
-
+               <select class=form-control>
+                    <label class="required">Nom de client</label>
+                    <option value=un>Un</option>
+                    <option value=deux>Deux</option>
+                    <option value=trois>Trois</option>
+                </select>
                 <div class="form-group">
                     <label class="required">Date de début</label>
                     <input type="date" v-model="item.beginDate" class="form-control" required>
@@ -31,6 +31,7 @@
             <button type="submit" class="btn btn-primary">Sauvegarder</button>
             </template>
         </form>
+        
     </div>
 </template>
 

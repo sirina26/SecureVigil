@@ -6,6 +6,10 @@ namespace SecureVigil.DAL
     {
         public int ClientId { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public int ContratId { get; set; }
 
         public DateTime BeginDate { get; set; }
