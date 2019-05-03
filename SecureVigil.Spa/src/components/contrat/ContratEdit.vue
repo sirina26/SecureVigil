@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import { getContratAsync, createContratAsync, updateContratAsync } from '../../api/contratApi'
+    import { getContratAsync, createContratAsync, updateContratAsync } from '../../api/ContratApi'
     import { DateTime } from 'luxon'
 
     export default {
