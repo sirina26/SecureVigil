@@ -23,11 +23,12 @@ namespace SecureVigil.DAL
             {
                 return await con.QueryAsync<ClientData>(
                      @"select
+                            s.ClientId,
 	                        s.FirstName,
 	                        s.LastName,
 	                        s.ClientPhone,
 	                        s.ClientAdresse
-                    FROM securevigil.vClient s ;" );
+                    FROM securevigil.vClient s" );
             }
         }
 

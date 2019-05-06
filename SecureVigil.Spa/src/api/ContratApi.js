@@ -15,7 +15,7 @@ export async function getContratAsync(contratId) {
 }
 
 export async function getContratByClientId(Id) {
-    return await getAsync(`${endpoint}/client/${id}`);
+    return await getAsync(`${endpoint}/client/${Id}`);
 }
 
 export async function createContratAsync(model) {
