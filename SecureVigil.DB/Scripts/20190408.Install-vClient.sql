@@ -11,11 +11,12 @@ select
 from securevigil.tClient  t 
 
 
-inner join (
+left join (
 	select 
 		Number = count( *), 
 		ClientId 
 	from securevigil.vContrat c 
 	group by ClientId
-) contrat on contrat.ClientId = t.ClientId;
+) contrat on contrat.ClientId = t.ClientId
+where t.ClientId <> 0;
 

@@ -55,5 +55,13 @@ namespace SecureVigil.WebApp.Controllers
             return this.CreateResult( result );
         }
 
+
+        [HttpGet( "zone/{id}" )]
+        public async Task<IActionResult> GetMissionByZoneID( int id )
+        {
+            IEnumerable<MissionData> result = await _missionGateway.GetMissionByZoneId( id );
+            return Ok( result );
+        }
+
     }
 }

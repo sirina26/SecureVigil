@@ -44,7 +44,7 @@
 </template>
 
 <script>
-    import { getContratAsync,getContratListAsync, deleteContratAsync } from '../../api/contratApi'
+    import { getContratAsync,getContratListAsync, deleteContratAsync } from '../../api/ContratApi'
     import AuthService from '../../services/AuthService'
     //import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
     import {getUserIdAsync} from'../../api/UserApi'

@@ -85,5 +85,13 @@ namespace SecureVigil.DAL
                 return Result.Success( Status.Ok );
             }
         }
+
+        public async Task<IEnumerable<MissionData>> GetMissionByZoneId( int id )
+        {
+            using( SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+                return await con.QueryAsync<MissionData>( "Select * from securevigil.vMission where ZoneId = @Id", new { Id = id } );
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
     <div>
         <div class="text-center">
             <h1 class="my-4">Bienvenue sur SekurTek</h1>
-            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via Secure Vigil</button>
+            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via SekurTek</button>
         </div>
     </div>
 </template>

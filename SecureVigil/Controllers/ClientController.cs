@@ -39,7 +39,7 @@ namespace SecureVigil.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateClient ( [FromBody] ClientViewModel model )
         {
-            int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
+            //int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _clientGateway.Create( model.FirstName, model.LastName,
                 model.ClientPhone, model.ClientAdresse );
             return Ok( result.Content );            

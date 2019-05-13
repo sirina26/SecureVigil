@@ -10,6 +10,7 @@
   "dependencies": {
     "@cityofphiladelphia/phila-vue-mapping": "^1.0.17",
     "bootstrap": "^4.1.3",
+    "element-ui": "^2.8.2",
     "jquery": "^3.4.0",
     "jshint": "^2.9.6",
     "luxon": "^1.3.3",
