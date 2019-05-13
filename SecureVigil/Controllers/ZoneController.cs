@@ -22,7 +22,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> CreateZone ([FromBody] ZoneViewModel model)
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
-            Result<int> result = await _zoneGateway.Create( model.ZoneId, model.ContratId, model.ZoneName,
+            Result<int> result = await _zoneGateway.Create(model.ContratId, model.ZoneName,
                 model.ZoneAdresse, model.Longitude, model.Latitude );
             return this.CreateResult( result, o =>
             {

@@ -27,12 +27,11 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> Create( int missionId, int zoneId, DateTime beginDate, DateTime endDate, string missionRules )
+        public async Task<Result<int>> Create(int zoneId, DateTime beginDate, DateTime endDate, string missionRules )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var m = new DynamicParameters();
-                m.Add( "@MissionId", missionId );
                 m.Add( "@ZoneId", zoneId );
                 m.Add( "@BeginDate", beginDate );
                 m.Add( "@EndDate", endDate );
@@ -91,6 +90,18 @@ namespace SecureVigil.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<MissionData>( "Select * from securevigil.vMission where ZoneId = @Id", new { Id = id } );
+            }
+        }
+
+        public async Task<string> GetMissionTree()
+        {
+            using( SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add( "Json", dbType: DbType.String, direction: ParameterDirection.Output, size: -1 );
+                await con.ExecuteAsync( "securevigil.sMissionGetTree", parameters, commandType: CommandType.StoredProcedure );
+
+                return parameters.Get<string>( "Json" );
             }
         }
     }

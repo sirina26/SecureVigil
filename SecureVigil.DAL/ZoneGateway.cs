@@ -26,12 +26,11 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> Create(int zoneId, int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
+        public async Task<Result<int>> Create(int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
         {
             using (SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var z = new DynamicParameters();
-                z.Add( "@ZoneId", zoneId );
                 z.Add( "@ContratId", contratId );
                 z.Add( "@ZoneName", zoneName );
                 z.Add( "@ZoneAdresse", zoneAdresse );

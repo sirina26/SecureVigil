@@ -4,8 +4,10 @@ import AuthService from './services/AuthService'
 import Vue from 'vue'
 import App from './components/App.vue'
 import router from './main.router'
+import ElementUi from 'element-ui'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.use(ElementUi, {size: 'small', zIndex: 3000});
 
 const main = async() => {
   await AuthService.init();
