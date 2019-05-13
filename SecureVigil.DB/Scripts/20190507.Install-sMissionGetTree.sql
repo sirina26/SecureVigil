@@ -4,8 +4,7 @@ create proc securevigil.sMissionGetTree
 )
 as
 begin
-set @Json = (select
-                clientId = clients.ClientId,
+set @Json = (select clientId = clients.ClientId,
                 clientFirstName = clients.FirstName,
                 clientLastName = clients.LastName,
                 contractId = contracts.ContratId,
@@ -18,11 +17,12 @@ set @Json = (select
                 missionBeginDate = missions.BeginDate,
                 missionEndDate = missions.EndDate,
                 missionRules = missions.MissionRules
-             from securevigil.tMission missions
-                inner join securevigil.tZone zones on zones.ZoneId = missions.ZoneId
-                inner join securevigil.tContrat contracts on contracts.ContratId = zones.ContratId
-                inner join securevigil.tClient clients on clients.ClientId = contracts.ClientId
-             where missions.MissionId <> 0
+             from securevigil.tClient clients
+                left join securevigil.tContrat contracts on contracts.ClientId = clients.ClientId			
+                left join securevigil.tZone zones on zones.ContratId = contracts.ContratId
+                left join securevigil.tMission missions on missions.ZoneId = zones.ZoneId
+
+             where clients.ClientId <> 0
              for json auto);
     return 0;
 end;

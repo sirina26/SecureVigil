@@ -1,8 +1,5 @@
 <template>
     <div class="">
-        <el-button @click="isDisplayed = true "> +
-        </el-button>
-        <el-dialog :visible.sync="isDisplayed">
         <div class="mb-4">
             <h1 v-if="mode == 'create'">Créer un client</h1>
             <h1 v-else>Editer profil d'un client</h1>
@@ -34,7 +31,6 @@
             <button type="submit" class="btn btn-primary">Sauvegarder</button>
             </template>
         </form>
-        </el-dialog>
     </div>
 </template>
 
