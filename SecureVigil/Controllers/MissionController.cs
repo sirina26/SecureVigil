@@ -23,7 +23,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> CreateMission( [FromBody] MissionViewModel model )
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
-            Result<int> result = await _missionGateway.Create( model.MissionId, model.ZoneId, model.BeginDate,
+            Result<int> result = await _missionGateway.Create( model.ZoneId, model.BeginDate,
                 model.EndDate, model.MissionRules );
             return this.CreateResult( result, o =>
             {
@@ -61,6 +61,13 @@ namespace SecureVigil.WebApp.Controllers
         {
             IEnumerable<MissionData> result = await _missionGateway.GetMissionByZoneId( id );
             return Ok( result );
+        }
+
+        [HttpGet( "getMissionTree" )]
+        public async Task<IActionResult> GetMissionTree()
+        {
+            string json = await _missionGateway.GetMissionTree();
+            return Content( json, "application/json" );
         }
 
     }
