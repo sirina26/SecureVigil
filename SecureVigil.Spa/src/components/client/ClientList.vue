@@ -1,14 +1,16 @@
 <template>
     <div>
         <div class="mb-4 d-flex justify-content-between">
-            <h1>Gestion de client </h1>
-            <div>
-                <router-link class="btn btn-primary" :to="`./create`"><i class="fa fa-plus"></i> Ajouter un client
-                </router-link>
-            </div>
+            <h1>Gestion de client
+                <div>
+                    <router-link class="btn btn-primary" :to="`./create`"><i class="fa fa-plus"></i> Ajouter un client
+                    </router-link>
+                </div>
+            </h1>
         </div>
 
-        <table class="table table-striped table-hover table-bordered">
+
+        <!--<table class="table table-striped table-hover table-bordered">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -40,33 +42,33 @@
                 :disabled="pageNumber > pageCount -1"
                 @click="nextPage">
             Suivant
-        </button>
+        </button>-->
 
         <div v-if="clients !== null">
             <!--<span style="cursor: pointer;"><h2><strong><a @click.prevent="clientClicked">{{ '+' }}</a> &nbsp; Client </strong></h2></span>-->
             <div v-for="cl in clients" :key="cl.clientId">
-                <span style="cursor: pointer;"><h3><strong><a @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}</strong></h3></span>
+                <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}</strong></h4></span>
 
                 <template v-if="cl.isVisible">
                     <div v-for="c in cl.contracts" :key="c.contractId">
-                        <div style="margin-left: 3em; margin-top: -1em;">
-                            <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a
-                                    @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}</strong></h4></span>
-                        </div>
+                        <div style="margin-left: 4em; margin-top: -1em;">
+                            <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a class="btn btn-outline-info" style="text: white;"
+                                    @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}</strong></h4>
+                            </span>
 
+                        </div>
                         <template v-if="c.isVisible">
                             <div v-for="z in c.zones" :key="z.zoneId">
-                                <div style="margin-left: 5em; margin-top: -1em;">
-                                    <span style="cursor: pointer;"><h4><strong><a @click.prevent="zoneClicked(z)">{{z.isVisible ? '-' : '+'}}</a> Zone : {{ z.zoneId }} - {{ z.zoneName }}</strong></h4></span>
+                                <div style="margin-left: 7em; margin-top: -1em;">
+                                    <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="zoneClicked(z)">{{z.isVisible ? '-' : '+'}}</a> Zone : {{ z.zoneId }} - {{ z.zoneName }}</strong></h4></span>
                                 </div>
 
                                 <template v-if="z.isVisible">
                                     <div v-for="m in z.missions" :key="m.missionId">
-                                        <div style="margin-left: 8em; margin-top: 1em;">
+                                        <div style="margin-left: 12em; margin-top: 1em;">
                                             <span style="cursor: pointer"><h4><strong> Mission : {{ m.missionId }} - {{ formatDate(m.missionBeginDate) }}</strong></h4></span>
                                         </div>
-
-                                    </div>
+                                    </div><br/>
                                 </template>
                             </div>
                         </template>
