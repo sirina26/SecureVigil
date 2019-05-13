@@ -5,7 +5,6 @@ select
     ContratId = t.ContratId,
     ZoneName = t.ZoneName,
     ZoneAdresse = t.ZoneAdresse,
-    Longitude = t.Longitude,
-    Latitude = t.Latitude
+    GeogCol1 = t.GeogCol1
 
 from securevigil.tZone t;

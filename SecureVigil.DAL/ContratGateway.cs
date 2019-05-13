@@ -50,6 +50,8 @@ namespace SecureVigil.DAL
 
                 int status = c.Get<int>( "@Status" );
 
+
+
                 Debug.Assert( status == 0 );
                 return Result.Success( Status.Created, c.Get<int>( "@ContratId" ) );
             }

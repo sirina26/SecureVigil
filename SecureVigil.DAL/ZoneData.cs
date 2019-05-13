@@ -12,9 +12,7 @@ namespace SecureVigil
 
         public int ZoneAdresse { get; set; }
 
-        public float Longitude { get; set; }
-
-        public float Latitude { get; set; }
+        public string GeogCol1 { get; set; }
 
     }
 }

@@ -23,7 +23,7 @@ namespace SecureVigil.WebApp.Controllers
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _zoneGateway.Create( model.ZoneId, model.ContratId, model.ZoneName,
-                model.ZoneAdresse, model.Longitude, model.Latitude );
+                model.ZoneAdresse, model.GeogCol1 );
             return this.CreateResult( result, o =>
             {
                 o.RouteName = "GetZone";
@@ -36,7 +36,7 @@ namespace SecureVigil.WebApp.Controllers
         {
 
             Result result = await _zoneGateway.Update( model.ZoneId, model.ContratId, model.ZoneName,
-                model.ZoneAdresse, model.Longitude, model.Latitude );
+                model.ZoneAdresse, model.GeogCol1 );
             return this.CreateResult( result );
         }
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mb-4">
-            <h1 v-if="mode == 'create'">Créer un Contrat</h1>
+            <h1 v-if="mode == 'create'">Créer une zone</h1>
             <h1 v-else>Editer Un contrat</h1>
         </div>
 
