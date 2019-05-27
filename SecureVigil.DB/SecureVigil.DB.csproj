@@ -9,7 +9,6 @@
     <EmbeddedResource Include="Scripts\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
- 
   <ItemGroup>
     <PackageReference Include="dbup-sqlserver" Version="4.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
