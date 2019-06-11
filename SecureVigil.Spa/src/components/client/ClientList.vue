@@ -1,82 +1,101 @@
 <template>
-    <div>
-        <div class="mb-4 d-flex justify-content-between">
-            <h1>Gestion de client
-                <div>
-                    <router-link class="btn btn-primary" :to="`./create`"><i class="fa fa-plus"></i> Ajouter un client
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div  id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="index">Accueil</a>
+                    </li>
+
+                    <li class="active">Client</li>
+
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+            <div class="page-content">
+
+                <div class="page-header">
+                    <h1>
+                        Client
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            Gestion des contrats des clients
+                        </small>
+                    </h1>
+                </div><!-- /.page-header --><br/>
+
+
+                <h4 class="pink">
+                    <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+                    <a href="#modal-client" role="button" class="green" data-toggle="modal"><button class="btn btn-primary" > Enregistrer un client</button> </a>
+                </h4>
+
+                <br/>
+
+                <div align="">
+                    <div v-if="clients !== null">
+                        <!--<span style="cursor: pointer;"><h2><strong><a @click.prevent="clientClicked">{{ '+' }}</a> &nbsp; Client </strong></h2></span>-->
+                        <div v-for="cl in clients" :key="cl.clientId">
+                <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}
+                <router-link class="btn btn-default" target="_blank"  :to="`/contrat/create/`+cl.clientId"><i class="fa fa-plus"></i> Contrat
+                   </router-link> &nbsp;
+
+                    <a href="" role="button" class="green" data-toggle="modal"><button class="btn btn-warning" ><i class="fa fa-edit"></i> Détail client</button> </a>
+
+                </strong></h4></span>
+
+                            <template v-if="cl.isVisible">
+                                <div v-for="c in cl.contracts" :key="c.contractId">
+                                    <div style="margin-left: 4em; margin-top: -1em;">
+                            <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}
+                            <router-link class="btn btn-default" target="_blank" :to="`/zone/create/`+c.contractId"><i class="fa fa-plus"></i> Zone
                     </router-link>
-                </div>
-            </h1>
-        </div>
-
-
-        <!--<table class="table table-striped table-hover table-bordered">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Numéro de téléphone</th>
-                <th>Adresse</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr v-if="clientList.length == 0">
-                <td colspan="6" class="text-center">Il n'y a actuellement aucun client.</td>
-            </tr>
-
-            <tr v-for="i of clientList">
-                <td>{{ i.firstName }}</td>
-                <td>{{ i.lastName }}</td>
-                <td>{{ i.clientPhone}}</td>
-                <td>{{ i.clientAdresse }}</td>
-            </tr>
-            </tbody>
-        </table>
-        <button
-                :disabled="pageNumber === 0"
-                @click="prevPage">
-            Précédent
-        </button>
-        <button
-                :disabled="pageNumber > pageCount -1"
-                @click="nextPage">
-            Suivant
-        </button>-->
-
-        <div v-if="clients !== null">
-            <!--<span style="cursor: pointer;"><h2><strong><a @click.prevent="clientClicked">{{ '+' }}</a> &nbsp; Client </strong></h2></span>-->
-            <div v-for="cl in clients" :key="cl.clientId">
-                <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}</strong></h4></span>
-
-                <template v-if="cl.isVisible">
-                    <div v-for="c in cl.contracts" :key="c.contractId">
-                        <div style="margin-left: 4em; margin-top: -1em;">
-                            <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a class="btn btn-outline-info" style="text: white;"
-                                    @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}</strong></h4>
+                                <!--<client-edit :mode="'edit'" :clientId ="cl.clientId"></client-edit>  -->
+                            </strong></h4>
                             </span>
 
-                        </div>
-                        <template v-if="c.isVisible">
-                            <div v-for="z in c.zones" :key="z.zoneId">
-                                <div style="margin-left: 7em; margin-top: -1em;">
-                                    <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="zoneClicked(z)">{{z.isVisible ? '-' : '+'}}</a> Zone : {{ z.zoneId }} - {{ z.zoneName }}</strong></h4></span>
-                                </div>
+                                    </div>
+                                    <template v-if="c.isVisible">
+                                        <div v-for="z in c.zones" :key="z.zoneId">
+                                            <div style="margin-left: 7em; margin-top: 1em;">
+                                    <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="zoneClicked(z)">{{z.isVisible ? '-' : '+'}}</a> Zone : {{ z.zoneId }} - {{ z.zoneName }} - {{ z.nbrAgentJour }} Agents(journée)  - {{ z.nbrAgentNuit }} Agents(nuit)  - {{ z.nbrChienJour }} Chiens(journée) - {{ z.nbrChienNuit }} Chiens(nuit)
+                                    <router-link class="btn btn-default" :to="`/mission/create/`+z.zoneId"><i class="fa fa-plus"></i> Mission
+                    </router-link>
+                                    </strong></h4></span>
+                                            </div>
 
-                                <template v-if="z.isVisible">
-                                    <div v-for="m in z.missions" :key="m.missionId">
-                                        <div style="margin-left: 12em; margin-top: 1em;">
-                                            <span style="cursor: pointer"><h4><strong> Mission : {{ m.missionId }} - {{ formatDate(m.missionBeginDate) }}</strong></h4></span>
+                                            <template v-if="z.isVisible">
+                                                <div v-for="m in z.missions" :key="m.missionId">
+                                                    <div style="margin-left: 12em; margin-top: 1em;">
+                                                        <span style="cursor: pointer"><h4><strong> Mission : {{ m.missionId }} - {{ DateTime(m.missionBeginDate) }}  - {{ DateTime(m.missionEndDate) }}  - {{ m.missionRules}}</strong></h4></span>
+                                                    </div>
+                                                </div><br/>
+                                            </template>
                                         </div>
-                                    </div><br/>
-                                </template>
-                            </div>
-                        </template>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
                     </div>
-                </template>
+
+                </div>
+
+
+                <div id="modal-client" class="modal fade" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <div class="modal-body no-padding">
+                                <client-edit :mode="'create'" v-on:refreshList="refreshList"></client-edit>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
             </div>
         </div>
-
     </div>
 </template>
 
@@ -87,8 +106,14 @@
     //import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
     import {getUserIdAsync} from '../../api/UserApi'
     import DateTime from 'luxon/src/datetime.js'
+    import ClientEdit from './ClientEdit'
+    import ContratEdit from '../contrat/ContratEdit'
 
     export default {
+        components:{
+            ClientEdit,
+            ContratEdit
+        },
         data() {
             return {
                 clientList: [],
@@ -173,8 +198,18 @@
             },
 
             formatDate(date) {
+
+                console.log(date);
                 return DateTime.fromISO(date).toFormat('dd/LL/yyyy');
-            }
+            },
+
+            DateTime(date) {
+
+                console.log(date);
+                return DateTime.fromISO(date).toFormat('dd/LL/yyyy HH:mm');
+            },
+
+
         },
 
         computed: {

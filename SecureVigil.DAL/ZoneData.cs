@@ -12,9 +12,13 @@ namespace SecureVigil
 
         public string ZoneAdresse { get; set; }
 
-        public float Longitude { get; set; }
+        public int NbrAgentJour { get; set; }
 
-        public float Latitude { get; set; }
+        public int NbrAgentNuit { get; set; }
+
+        public int NbrChienJour { get; set; }
+
+        public int NbrChienNuit { get; set; }
 
     }
 }

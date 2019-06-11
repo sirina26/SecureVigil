@@ -2,8 +2,8 @@ create procedure securevigil.sContratCreate
 (
     @BeginDate DateTime,
     @EndDate DateTime,
-    @ContratId int out,
-    @ClientId int out
+    @ClientId int,
+    @ContratId int out
 )
 as
 begin
@@ -11,9 +11,9 @@ begin
     begin tran;
 
     insert into securevigil.tContrat
-                (ContratId, ClientId, BeginDate, EndDate)
+                ( ClientId, BeginDate, EndDate)
     values
-                (@ContratId, @ClientId, @BeginDate, @EndDate);
+                ( @ClientId, @BeginDate, @EndDate);
 
                 set @ContratId = scope_identity();
 

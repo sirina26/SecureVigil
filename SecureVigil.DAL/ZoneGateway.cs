@@ -26,7 +26,7 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> Create(int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
+        public async Task<Result<int>> Create(int contratId, string zoneName, string zoneAdresse, int nbrAgentJour, int nbrAgentNuit, int nbrChienJour, int nbrChienNuit )
         {
             using (SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -34,8 +34,10 @@ namespace SecureVigil.DAL
                 z.Add( "@ContratId", contratId );
                 z.Add( "@ZoneName", zoneName );
                 z.Add( "@ZoneAdresse", zoneAdresse );
-                z.Add( "@Longitude", zoneLongitude );
-                z.Add( "@Latitude", zoneLatitude );
+                z.Add( "@NbrAgentJour", nbrAgentJour );
+                z.Add( "@NbrAgentNuit", nbrAgentNuit );
+                z.Add( "@NbrChienJour", nbrChienJour );
+                z.Add( "@NbrChienNuit", nbrChienNuit );
                 z.Add( "@ZoneId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 z.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sZoneCreate", z, commandType: CommandType.StoredProcedure );
@@ -64,7 +66,7 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result> Update(int zoneId, int contratId, string zoneName, string zoneAdresse, float zoneLongitude, float zoneLatitude )
+        public async Task<Result> Update(int zoneId, int contratId, string zoneName, string zoneAdresse, int nbrAgentJour, int nbrAgentNuit, int nbrChienJour, int nbrChienNuit )
         {
             using(SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -73,8 +75,10 @@ namespace SecureVigil.DAL
                 z.Add( "@ContratId", contratId );
                 z.Add( "@ZoneName", zoneName );
                 z.Add( "@ZoneAdresse", zoneAdresse );
-                z.Add( "@Longitude", zoneLongitude );
-                z.Add( "@Latitude", zoneLatitude );
+                z.Add( "@NbrAgentJour", nbrAgentJour );
+                z.Add( "@NbrAgentNuit", nbrAgentNuit );
+                z.Add( "@NbrChienJour", nbrChienJour );
+                z.Add( "@NbrChienNuit", nbrChienNuit );
                 z.Add( "@status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sZoneUpdate", z, commandType: CommandType.StoredProcedure );
 

@@ -1,17 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Secure Vigil</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but Wedding Organizer doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="<%= BASE_URL %>assets/images/sekurtek.png">
+  <link href="<%= BASE_URL %>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/jquery-ui.custom.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css//fullcalendar.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/chosen.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/fonts.googleapis.com.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/ace.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/ace-part2.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/ace-skins.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/ace-rtl.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/css/ace-ie.min.css" rel="stylesheet" type="text/css">
+
+  <link href="<%= BASE_URL %>assets/js/ace-extra.min.js" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/js/html5shiv.min.js" rel="stylesheet" type="text/css">
+  <link href="<%= BASE_URL %>assets/js/respond.min.js" rel="stylesheet" type="text/css">
+
+
+  <title>repertoire</title>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but repertoire doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<script src="<%= BASE_URL %>assets/js/jquery-2.1.4.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+  if ('ontouchstart' in document.documentElement)
+    document.write("<script src='<%= BASE_URL %>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+
+<script src="<%= BASE_URL %>assets/js/bootstrap.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery-ui.custom.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery.dataTables.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/dataTables.buttons.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/buttons.flash.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/buttons.html5.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/buttons.print.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/buttons.colVis.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/dataTables.select.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/moment.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/fullcalendar.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/excanvas.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/chosen.jquery.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/autosize.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery.inputlimiter.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/jquery.maskedinput.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/ace-elements.min.js"></script>
+<script src="<%= BASE_URL %>assets/js/ace.min.js"></script>
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    //initiate dataTables plugin
+    var myTable =
+            $('#dynamic-table')
+            //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                    .DataTable({
+                      bAutoWidth: false,
+                      select: {
+                        style: 'multi'
+                      }
+                    });
+
+
+    $('#dynamic-tables')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+    $('#dynamic-deploiement')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+    $('#dynamic-conge')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+    $('#dynamic-ronde')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+    $('#dynamic-rondes')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+    $('#dynamic-service')
+    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .DataTable({
+              bAutoWidth: false,
+              select: {
+                style: 'multi'
+              }
+            });
+
+
+
+    $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+
+    myTable.buttons().container().appendTo($('.tableTools-container'));
+
+    //style the message box
+    var defaultCopyAction = myTable.button(1).action();
+    myTable.button(1).action(function (e, dt, button, config) {
+      defaultCopyAction(e, dt, button, config);
+      $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+    });
+
+
+    var defaultColvisAction = myTable.button(0).action();
+    myTable.button(0).action(function (e, dt, button, config) {
+
+      defaultColvisAction(e, dt, button, config);
+
+
+      if ($('.dt-button-collection > .dropdown-menu').length == 0) {
+        $('.dt-button-collection')
+                .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+                .find('a').attr('href', '#').wrap("<li />")
+      }
+      $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+    });
+
+    ////
+
+
+
+
+
+
+    myTable.on('select', function (e, dt, type, index) {
+      if (type === 'row') {
+        $(myTable.row(index).node()).find('input:checkbox').prop('checked', true);
+      }
+    });
+    myTable.on('deselect', function (e, dt, type, index) {
+      if (type === 'row') {
+        $(myTable.row(index).node()).find('input:checkbox').prop('checked', false);
+      }
+    });
+
+
+
+
+    /////////////////////////////////
+    //table checkboxes
+    $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+
+
+
+
+
+    //And for the first simple table, which doesn't have TableTools or dataTables
+    //select/deselect all rows according to table header checkbox
+    var active_class = 'active';
+    $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function () {
+      var th_checked = this.checked;//checkbox inside "TH" table header
+
+      $(this).closest('table').find('tbody > tr').each(function () {
+        var row = this;
+        if (th_checked)
+          $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+        else
+          $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+      });
+    });
+
+    //select/deselect a row when the checkbox is checked/unchecked
+    $('#simple-table').on('click', 'td input[type=checkbox]', function () {
+      var $row = $(this).closest('tr');
+      if ($row.is('.detail-row '))
+        return;
+      if (this.checked)
+        $row.addClass(active_class);
+      else
+        $row.removeClass(active_class);
+    });
+
+
+
+    /********************************/
+    //add tooltip for small view action buttons in dropdown menu
+    $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+    //tooltip placement on right or left
+    function tooltip_placement(context, source) {
+      var $source = $(source);
+      var $parent = $source.closest('table')
+      var off1 = $parent.offset();
+      var w1 = $parent.width();
+
+      var off2 = $source.offset();
+      //var w2 = $source.width();
+
+      if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2))
+        return 'right';
+      return 'left';
+    }
+
+
+
+
+    /***************/
+    $('.show-details-btn').on('click', function (e) {
+      e.preventDefault();
+      $(this).closest('tr').next().toggleClass('open');
+      $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+    });
+    /***************/
+
+
+
+
+
+    /**
+     //add horizontal scrollbars to a simple table
+     $('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
+     {
+                     horizontal: true,
+                     styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
+                     size: 2000,
+                     mouseWheelLock: true
+                     }
+     ).css('padding-top', '12px');
+     */
+
+
+
+    if (!ace.vars['touch']) {
+      $('.chosen-select').chosen({allow_single_deselect: true});
+      //resize the chosen on window resize
+
+      $(window)
+              .off('resize.chosen')
+              .on('resize.chosen', function () {
+                $('.chosen-select').each(function () {
+                  var $this = $(this);
+                  $this.next().css({'width': '444px'});
+                })
+              }).trigger('resize.chosen');
+
+      //resize chosen on sidebar collapse/expand
+      $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+        if (event_name != 'sidebar_collapsed')
+          return;
+        $('.chosen-select').each(function () {
+          var $this = $(this);
+          $this.next().css({'width': '444px'});
+        })
+      });
+
+    }
+
+
+    $('.date-picker').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+
+
+  })
+
+  try {
+    ace.settings.loadState('main-container')
+  } catch (e) {
+  }
+
+  try {
+    ace.settings.loadState('sidebar')
+  } catch (e) {
+  }
+
+</script>
+
+
+</body>
 </html>
+

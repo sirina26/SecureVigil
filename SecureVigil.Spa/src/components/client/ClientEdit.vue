@@ -5,48 +5,73 @@
             <h1 v-else>Editer profil d'un client</h1>
         </div>
 
+
         <form @submit="onSubmit($event)">
 
             <template v-if="item !== null">
                 <div class="form-group">
-                    <label class="required">Nom</label>
-                    <input type="text" v-model="item.lastName" class="form-control" required>
-                </div>   
+                    <label class="required col-sm-2">Nom</label>
+                    <div class="col-xs-12">
+                        <input type="text" v-model="item.lastName" class="form-control" required>
+                    </div>
+                </div>
 
                  <div class="form-group">
-                    <label class="required">Prénom </label>
-                    <input type="text" v-model="item.firstName" class="form-control" required>
-                </div>  
+                    <label class="required col-sm-2">Prénom </label>
+                     <div class="col-xs-12">
+                        <input type="text" v-model="item.firstName" class="form-control" required>
+                     </div>
+                </div>
 
                 <div class="form-group">
-                    <label class="required">Numéro de téléphone</label>
-                    <input type="text" v-model="item.clientPhone" class="form-control" required>
-                </div>  
+                    <label class="required col-sm-2">Téléphone</label>
+                    <div class="col-xs-12">
+                        <input type="text" v-model="item.clientPhone" class="form-control" required>
+                    </div>
+                </div>
 
                  <div class="form-group">
-                    <label class="required">Adresse</label>
-                    <input type="text" v-model="item.clientAdresse" class="form-control" required>
-                </div>           
-               
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                    <label class="required col-sm-2">Adresse</label>
+                     <div class="col-xs-12">
+                        <input type="text" v-model="item.clientAdresse" class="form-control" required>
+                     </div>
+                </div>
+                <p></p>
+
+                <div class="form-group col-xs-12">
+                    <br>
+                    <div class=" modal-footer no-margin-top col-xs-12">
+                        <button type="reset" class="btn btn-danger">Annuler</button>
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+                    </div>
+                </div>
+
             </template>
+
+
         </form>
     </div>
 </template>
 
 <script>
-    import { getClientAsync, createClientAsync, updateClientAsync } from '../../api/clientApi'
+    import { getClientAsync, getClientListAsync, createClientAsync, updateClientAsync } from '../../api/clientApi'
+
     import { DateTime } from 'luxon'
+    import {Component } from 'vue'
 
     export default {
         data () {
             return {
                 isDisplayed: false,
                 item: {},
-                mode: null,
                 clientid: null,
                 errors: [],
             }
+        },
+
+        props:{
+            mode: null
         },
 
         async mounted() {
@@ -62,6 +87,8 @@
                     console.error(e);
                     this.$router.replace('./');
                 }
+
+
             }
              console.log(this.item); 
           
@@ -83,8 +110,9 @@
                             await updateClientAsync(this.item);
                             debugger;
                         }
+                        this.$emit("refreshList")
 
-                        this.$router.replace('./');
+
                     }
                     catch(e) {
                         console.error(e);

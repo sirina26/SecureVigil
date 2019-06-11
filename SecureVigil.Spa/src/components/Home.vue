@@ -1,39 +1,26 @@
 <template>
-    <section class="phot">
-        <div class="container">
-            <h1 class="jumbotron-heading">Bienvenue sur SekurTek</h1>
-            <select v-on:change="getContratList($event)">
-                <option v-for="c in clientList" :value="c.clientId"> <div v-if=" typeof c === 'string'"> {{c}} </div> <div v-else>@{{c.firstName + " " + c.lastName}}</div> </option>
-            </select>
-            <br>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div  id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="index">Accueil</a>
+                    </li>
 
+                </ul><!-- /.breadcrumb -->
 
-            <div v-if ="contratList.length >0">
-                <select v-on:change="getZoneList($event)">
-                    <option v-for="c in contratList" :value="c.contratId"> <div v-if="typeof c === 'string'"> {{c}} </div> <div v-else>{{c.beginDate + " " + c.endDate}}</div> </option>
-                </select>
-                <br>
             </div>
-            <br>
+            <div class="page-content">
 
-            <div v-if ="zoneList.length >0">
-                <select v-on:change="getMissionList($event)">
-                    <option v-for="z in zoneList" :value="z.zoneId"> <div v-if="typeof z === 'string'"> {{z}} </div> <div v-else>@{{z.zoneName }} </div> </option>
-                </select>
-                <br>
-            </div>
+                <div align="center">
+                    <img src="assets/images/sekurtek.png"/>
 
-            <div v-if ="missionList.length >0">
-                <select v-on:change="NeedToBeImplemented($event)">
-                    <option v-for="m in missionList" :value="m.missionId">  <div v-if="typeof m === 'string'"> {{m}} </div> <div v-else>@{{m }} </div> </option>
-                </select>
-                <br>
+                </div>
+
             </div>
-            <p>
-             
-            </p>
         </div>
-    </section>
+    </div>
 </template>
 
 

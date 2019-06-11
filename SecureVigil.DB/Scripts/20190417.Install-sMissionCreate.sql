@@ -3,8 +3,9 @@ create procedure securevigil.sMissionCreate
     @BeginDate DateTime,
     @EndDate DateTime,
     @MissionRules nvarchar (39),
-    @MissionId int out,
-    @ZoneId int out
+    @ZoneId int,
+    @MissionId int out
+    
 )
 as
 begin
@@ -12,9 +13,9 @@ begin
     begin tran;
 
     insert into securevigil.tMission
-                (MissionId, ZoneId, BeginDate, EndDate, MissionRules)
+                (ZoneId, BeginDate, EndDate, MissionRules)
     values
-                (@MissionId, @ZoneId, @BeginDate, @EndDate, @MissionRules);
+                (@ZoneId, @BeginDate, @EndDate, @MissionRules);
 
                 set @MissionId = scope_identity();
 

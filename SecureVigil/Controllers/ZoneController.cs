@@ -21,14 +21,9 @@ namespace SecureVigil.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateZone ([FromBody] ZoneViewModel model)
         {
-            int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _zoneGateway.Create(model.ContratId, model.ZoneName,
-                model.ZoneAdresse, model.Longitude, model.Latitude );
-            return this.CreateResult( result, o =>
-            {
-                o.RouteName = "GetZone";
-                o.RouteValues = id => new { id };
-            } );
+                model.ZoneAdresse, model.NbrAgentJour, model.NbrAgentNuit, model.NbrChienJour, model.NbrChienNuit );
+            return Ok( result.Content );
         }
 
         [HttpPut( "{id}" )]
@@ -36,7 +31,7 @@ namespace SecureVigil.WebApp.Controllers
         {
 
             Result result = await _zoneGateway.Update( model.ZoneId, model.ContratId, model.ZoneName,
-                model.ZoneAdresse, model.Longitude, model.Latitude );
+                model.ZoneAdresse, model.NbrAgentJour, model.NbrAgentNuit, model.NbrChienJour, model.NbrChienNuit );
             return this.CreateResult( result );
         }
 

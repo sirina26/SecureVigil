@@ -1,37 +1,79 @@
 <template>
-    <div>
-        <div class="mb-4">
-            <h1 v-if="mode == 'create'">Créer un Contrat</h1>
-            <h1 v-else>Editer Un contrat</h1>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div  id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="index">Accueil</a>
+                    </li>
+
+                    <li class="active">Contrat</li>
+
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+            <div class="page-content">
+
+                <div class="page-header">
+                    <h1>
+                        Client
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            Gestion des contrats des clients
+                        </small>
+                    </h1>
+                </div><!-- /.page-header --><br/>
+
+
+                <div>
+                    <div class="mb-4">
+                        <h1 v-if="mode == 'create'">Créer un Contrat</h1>
+                        <h1 v-else>Editer Un contrat</h1>
+                    </div>
+
+                    <form @submit="onSubmit($event)">
+
+                        <template v-if="item !== null">
+                            <div class="form-group">
+                                <label class="required col-sm-2">Début</label>
+                                <div class="col-xs-12">
+                                    <input type="date" v-model="item.beginDate" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required col-sm-2">Fin </label>
+                                <div class="col-xs-12">
+                                    <input type="date" v-model="item.endDate" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <p></p>
+
+                            <div class="form-group col-xs-12">
+                                <br>
+                                <div class=" modal-footer no-margin-top col-xs-12">
+                                    <button type="reset" class="btn btn-danger">Annuler</button>
+                                    <button type="submit" class="btn btn-success">Enregistrer</button>
+
+                                </div>
+                            </div>
+
+                        </template>
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
         </div>
-
-        <form @submit="onSubmit($event)">
-
-            <template v-if="item !== null">
-                <div class="form-group">
-                    <label class="required">Nom de client</label>
-                    <input type="text" v-model="item.clientId" class="form-control" required>
-                </div>   
-
-                 <!-- <div class="form-group">
-                    <label class="required">Prénom de client</label>
-                    <input type="text" v-model="item.clientId" class="form-control" required>
-                </div>   -->
-
-                <div class="form-group">
-                    <label class="required">Date de début</label>
-                    <input type="date" v-model="item.beginDate" class="form-control" required>
-                </div>  
-
-                <div class="form-group">
-                    <label class="required">Date de fin</label>
-                    <input type="date" v-model="item.endDate" class="form-control" required>
-                </div>  
-
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
-            </template>
-        </form>
     </div>
+
 </template>
 
 <script>
@@ -39,6 +81,14 @@
     import { DateTime } from 'luxon'
 
     export default {
+
+        props: {
+            clientId:{
+                type: Number,
+                default: null
+            }
+        },
+
         data () {
             return {
                 item: {},
@@ -49,7 +99,8 @@
         },
 
         async mounted() {
-            
+
+            this.item.clientId = this.clientId
             this.mode = this.$route.params.mode;
             this.contratid = this.$route.params.id;
             if(this.mode == 'edit') {
@@ -77,14 +128,14 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
+                            this.item.clientId = this.$route.params.id;
                             await createContratAsync(this.item);
                         }
                         else {
                             await updateContratAsync(this.item);
                             debugger;
                         }
-
-                        this.$router.replace('./');
+                        this.$router.replace('/client');
                     }
                     catch(e) {
                         console.error(e);

@@ -30,7 +30,7 @@ namespace SecureVigil.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContrat( [FromBody] ContratViewModel model )
         {
-            int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
+            //int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _contratGateway.Create(model.ClientId, model.BeginDate,
                 model.EndDate );
             return Ok( result.Content );

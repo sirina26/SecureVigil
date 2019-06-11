@@ -16,6 +16,10 @@ import ClientList from './components/client/ClientList.vue'
 import ContratEdit from './components/contrat/ContratEdit.vue'
 import ContratList from './components/contrat/ContratList.vue'
 
+import ZoneEdit from './components/zone/ZoneEdit.vue'
+
+import MissionEdit from './components/mission/MissionEdit.vue'
+
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
@@ -27,7 +31,11 @@ const routes = [
     { path: '/client/:mode([create|edit]+)/:id?', component: ClientEdit, beforeEnter: requireAuth },       
 
     { path: '/contrat', component: ContratList, beforeEnter: requireAuth },
-    { path: '/contrat/:mode([create|edit]+)/:id?', component: ContratEdit, beforeEnter: requireAuth },       
+    { path: '/contrat/:mode([create|edit]+)/:id?', component: ContratEdit, beforeEnter: requireAuth },
+
+    { path: '/zone/:mode([create|edit]+)/:id?', component: ZoneEdit, beforeEnter: requireAuth },
+
+    { path: '/mission/:mode([create|edit]+)/:id?', component: MissionEdit, beforeEnter: requireAuth },
 ];
 
 export default new VueRouter({

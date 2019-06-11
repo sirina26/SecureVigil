@@ -11,3 +11,7 @@ export async function getMissionByZoneId(id) {
 export async function getMissionTreeAsync() {
     return await getAsync(`${endpoint}/getMissionTree`);
 }
+
+export async function createMissionAsync(model) {
+    return await postAsync(endpoint, model);
+}
