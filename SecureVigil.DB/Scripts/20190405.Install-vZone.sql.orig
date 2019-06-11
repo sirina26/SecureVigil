@@ -1,0 +1,17 @@
+create view securevigil.vZone
+as
+select
+    ZoneId = t.ZoneId,
+    ContratId = t.ContratId,
+    ZoneName = t.ZoneName,
+    ZoneAdresse = t.ZoneAdresse,
+<<<<<<< HEAD
+    NbrAgentJour = t.NbrAgentJour,
+    NbrAgentNuit = t.NbrAgentNuit,
+    NbrChienJour = t.NbrChienJour,
+    NbrChienNuit = t.NbrChienNuit
+=======
+    GeogCol1 = t.GeogCol1
+>>>>>>> origin/Vue
+
+from securevigil.tZone t;

@@ -1,0 +1,30 @@
+<<<<<<< HEAD
+create table securevigil.tZone
+=======
+Create table securevigil.tZone
+>>>>>>> origin/Vue
+(
+	ZoneId int identity(0, 1),
+	ContratId int not null, 
+	ZoneName nvarchar(60) not null,	
+	ZoneAdresse nvarchar(60) not null,
+<<<<<<< HEAD
+	NbrAgentJour int not null,
+	NbrAgentNuit int not null,
+	NbrChienJour int not null,
+	NbrChienNuit int not null,
+=======
+	GeogCol1 geography not null,
+>>>>>>> origin/Vue
+	constraint PK_tZone primary key(ZoneId),
+	constraint FK_tZone_tContrat foreign Key(ContratId)
+	references securevigil.tContrat(ContratId)
+);
+<<<<<<< HEAD
+insert into securevigil.tZone( ContratId, ZoneName, ZoneAdresse,NbrAgentJour,NbrAgentNuit, NbrChienJour, NbrChienNuit)
+values (0,  N'',  N'', 0, 0, 0, 0);
+
+=======
+insert into securevigil.tZone( ContratId, ZoneName, ZoneAdresse, GeogCol1)
+values (0,  N'',  N'', geography::STGeomFromText('LINESTRING(-122.360 47.656, -122.343 47.656 )', 4326) );
+>>>>>>> origin/Vue

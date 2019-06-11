@@ -21,7 +21,18 @@ namespace SecureVigil.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                return await con.QueryAsync<ContratData>( "Select * from securevigil.vContrat" );
+                return await con.QueryAsync<ContratData>(
+                    @"select
+	                        s.ClientId,
+	                        s.ContratId,
+	                        s.BeginDate,
+	                        s.EndDate,
+                            e.FirstName,
+                            e.LastName
+                    FROM securevigil.vContrat s JOIN securevigil.vClient e
+					ON s.ClientId = e.ClientId
+                    WHERE s.ClientId = e.ClientId
+                ;" );
             }
         }
 
@@ -38,6 +49,8 @@ namespace SecureVigil.DAL
                 await con.ExecuteAsync( "securevigil.sContratCreate", c, commandType: CommandType.StoredProcedure );
 
                 int status = c.Get<int>( "@Status" );
+
+
 
                 Debug.Assert( status == 0 );
                 return Result.Success( Status.Created, c.Get<int>( "@ContratId" ) );
