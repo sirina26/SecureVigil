@@ -15,9 +15,6 @@ namespace SecureVigil.DAL
         public DateTime BeginDate { get; set; }
 
         public DateTime EndDate { get; set; }
-
-        public DateTime TallyBegin { get; set; }
-
-        public DateTime TallyEnd { get; set; }
+     
     }
 }

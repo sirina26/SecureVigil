@@ -32,7 +32,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> CreateVigil( [FromBody] VigilViewModel model )
         {
             Result<int> result = await _vigilGeteway.Create( model.FistName, model.LastNAme,
-                model.BeginDate, model.EndDate,model.TallyBegin, model.TallyEnd, model.StatePlanning );
+                model.BeginDate, model.EndDate);
             return Ok( result.Content );
         }
 
@@ -41,7 +41,7 @@ namespace SecureVigil.WebApp.Controllers
         {
 
             Result result = await _vigilGeteway.Update( model.VigilId, model.FistName, model.LastNAme,
-                model.BeginDate, model.EndDate, model.TallyBegin, model.TallyEnd, model.StatePlanning );
+                model.BeginDate, model.EndDate );
             return this.CreateResult( result );
         }
 

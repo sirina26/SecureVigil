@@ -4,10 +4,7 @@ create procedure securevigil.sVigilCreate
     @FirstName nvarchar (30),
     @LastName nvarchar (30),
     @BeginDate dateTime2,
-    @EndDate dateTime2,
-    @TallyBegin dateTime2,
-    @TallyEnd datetime2,
-    @StatePlanning bit,
+    @EndDate dateTime2,    
     @VigilId   int out
 )
 as
@@ -17,14 +14,10 @@ begin
 
 	insert into securevigil.tVigil
                    (FirstName, LastName,
-                    BeginDate, EndDate,
-                    TallyBegin, TallyEnd,
-                    StatePlanning)
+                    BeginDate, EndDate)                    
         values
                     (@FirstName, @LastName,
-                    @BeginDate, @EndDate,
-                    @TallyBegin, @TallyEnd,
-                    @StatePlanning);
+                    @BeginDate, @EndDate);
 
                     set @VigilId = scope_identity();
     commit;

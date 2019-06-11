@@ -6,8 +6,6 @@ select
     FirstName = t.FirstName,    
     LastName = t.LastName,    
     BeginDate = t.BeginDate,
-    EndDate  = t.EndDate,    
-    TallyBegin = t.TallyBegin,    
-    TallyEnd = t.TallyEnd 
+    EndDate  = t.EndDate
 
 from securevigil.tVigil t;

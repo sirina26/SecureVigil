@@ -18,13 +18,6 @@ namespace SecureVigil.WebApp.Models.VigilViewModel
 
         public DateTime EndDate { get; set; }
 
-        public DateTime TallyBegin { get; set; }
-
-        public DateTime TallyEnd { get; set; }
-
-        public bool StatePlanning { get; set; }
-
-
     }
 }
 
