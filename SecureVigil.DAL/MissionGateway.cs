@@ -27,12 +27,13 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> Create(int zoneId, DateTime beginDate, DateTime endDate, string missionRules )
+        public async Task<Result<int>> Create(int zoneId, int vigilId, DateTime beginDate, DateTime endDate, string missionRules )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var m = new DynamicParameters();
                 m.Add( "@ZoneId", zoneId );
+                m.Add( "@VigilId", vigilId );
                 m.Add( "@BeginDate", beginDate );
                 m.Add( "@EndDate", endDate );
                 m.Add( "@Missionrules", missionRules );
@@ -64,13 +65,14 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result> Update( int missionId, int zoneId, DateTime beginDate, DateTime endDate, string missionRules )
+        public async Task<Result> Update( int missionId, int zoneId, int vigilId, DateTime beginDate, DateTime endDate, string missionRules )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var m = new DynamicParameters();
                 m.Add( "@MissionId", missionId );
                 m.Add( "@ZoneId", zoneId );
+                m.Add( "@VigilId", vigilId );
                 m.Add( "@BeginDate", beginDate );
                 m.Add( "@EndDate", endDate );
                 m.Add( "@Missionrules", missionRules );

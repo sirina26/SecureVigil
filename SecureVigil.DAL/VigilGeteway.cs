@@ -27,27 +27,21 @@ namespace SecureVigil.DAL
                         s.VigilId,
                         s.FirstName,
                         s.LastNAme,
-                        s.BeginDate, 
-                        s.EndDate,
-                        s.TallyBegin,
-                        s.TallyEnd,
-                        s.StatePlanning
-                    From securevigil.vVigil" );
+                        s.Phone, 
+                        s.Adresse
+                    From securevigil.vVigil s" );
             }
         }
 
-        public async Task<Result<int>> Create(string firstName, string lastName, DateTime beginDate,DateTime endDate, DateTime tallyBegin, DateTime tallyEnd, bool statePlanning )
+        public async Task<Result<int>> Create(string firstName, string lastName, string phone, string adresse )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@firstName", firstName );
-                p.Add( "@lastName", lastName );
-                p.Add( "@beginDate", beginDate );
-                p.Add( "@endDate", endDate  );
-                p.Add( "@tallyBegin", tallyBegin );
-                p.Add( "@tallyEnd", tallyEnd );
-                p.Add( "@statePlanning", statePlanning );
+                p.Add( "@FirstName", firstName );
+                p.Add( "@LastName", lastName );
+                p.Add( "@Phone", phone );
+                p.Add( "@Adresse", adresse  );
                 p.Add( "@VigilId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "securevigil.sVigilCreate", p, commandType: CommandType.StoredProcedure );
@@ -77,19 +71,15 @@ namespace SecureVigil.DAL
 
         }
 
-        public async Task<Result> Update(int vigilId, string firstName, string lastName, DateTime beginDate, DateTime endDate, DateTime tallyBegin, DateTime tallyEnd, bool statePlanning )
+        public async Task<Result> Update(int vigilId, string firstName, string lastName, string phone, string adresse )
         {
             using( SqlConnection cnx = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@vigilId", vigilId );
-                p.Add( "@firstName", firstName );
-                p.Add( "@lastName", lastName );
-                p.Add( "@beginDate", beginDate );
-                p.Add( "@endDate", endDate );
-                p.Add( "@tallyBegin", tallyBegin );
-                p.Add( "@tallyEnd", tallyEnd );
-                p.Add( "@statePlanning", statePlanning );              
+                p.Add( "@FirstName", firstName );
+                p.Add( "@LastName", lastName );
+                p.Add( "@Phone", phone );
+                p.Add( "@Adresse", adresse );
                 p.Add( "@status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await cnx.ExecuteAsync( "securevigil.sVigilUpdate", p, commandType: CommandType.StoredProcedure );
 

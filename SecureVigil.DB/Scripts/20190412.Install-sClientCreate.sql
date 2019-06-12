@@ -4,7 +4,7 @@ create procedure securevigil.sClientCreate
     @FirstName nvarchar (30),
     @LastName nvarchar (30),
     @ClientPhone nvarchar (12),
-    @ClientAdresse nvarchar (60),
+    @ClientAdresse nvarchar (100),
     @ClientId   int out
 )
 as

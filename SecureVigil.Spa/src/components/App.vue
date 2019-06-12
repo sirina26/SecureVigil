@@ -84,6 +84,17 @@
                     <b class="arrow"></b>
                 </li>
 
+                <li class="col-lg-12">
+                    <router-link class="nav-link" to="/vigile/" >
+                        <i class="menu-icon fa fa-male"></i>
+                        <span class="menu-text">
+                          Vigile
+                        </span>
+
+                    </router-link>
+                    <b class="arrow"></b>
+                </li>
+
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

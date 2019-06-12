@@ -22,7 +22,7 @@ namespace SecureVigil.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMission( [FromBody] MissionViewModel model )
         {
-            Result<int> result = await _missionGateway.Create( model.ZoneId, model.BeginDate,
+            Result<int> result = await _missionGateway.Create( model.ZoneId, model.VigilId, model.BeginDate,
                 model.EndDate, model.MissionRules );
             return Ok( result.Content );
         }
@@ -31,7 +31,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> UpdateMission( int id, [FromBody] MissionViewModel model )
         {
 
-            Result result = await _missionGateway.Update( model.MissionId, model.ZoneId, model.BeginDate,
+            Result result = await _missionGateway.Update( model.MissionId, model.ZoneId, model.VigilId, model.BeginDate,
                 model.EndDate, model.MissionRules );
             return this.CreateResult( result );
         }

@@ -12,11 +12,11 @@ namespace SecureVigil.WebApp.Controllers
     [Route( "api/[controller]" )]
     [Authorize( AuthenticationSchemes = JwtBearerAuthentication.AuthenticationScheme )]
 
-    public class VigilControllor : Controller
+    public class VigilController : Controller
     {
         readonly VigilGeteway _vigilGeteway;
         
-        public VigilControllor( VigilGeteway vigilGeteway )
+        public VigilController( VigilGeteway vigilGeteway )
         {
             _vigilGeteway = vigilGeteway;
         }
@@ -32,7 +32,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> CreateVigil( [FromBody] VigilViewModel model )
         {
             Result<int> result = await _vigilGeteway.Create( model.FistName, model.LastNAme,
-                model.BeginDate, model.EndDate,model.TallyBegin, model.TallyEnd, model.StatePlanning );
+                model.Phone, model.Adresse );
             return Ok( result.Content );
         }
 
@@ -41,7 +41,7 @@ namespace SecureVigil.WebApp.Controllers
         {
 
             Result result = await _vigilGeteway.Update( model.VigilId, model.FistName, model.LastNAme,
-                model.BeginDate, model.EndDate, model.TallyBegin, model.TallyEnd, model.StatePlanning );
+                model.Phone, model.Adresse );
             return this.CreateResult( result );
         }
 

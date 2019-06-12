@@ -2,7 +2,7 @@ create procedure securevigil.sMissionCreate
 (
     @BeginDate DateTime,
     @EndDate DateTime,
-    @MissionRules nvarchar (39),
+    @MissionRules nvarchar (100),
     @ZoneId int,
     @MissionId int out
     

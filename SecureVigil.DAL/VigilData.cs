@@ -12,12 +12,8 @@ namespace SecureVigil.DAL
 
         public string LastNAme { get; set; }
 
-        public DateTime BeginDate { get; set; }
+        public string Phone { get; set; }
 
-        public DateTime EndDate { get; set; }
-
-        public DateTime TallyBegin { get; set; }
-
-        public DateTime TallyEnd { get; set; }
+        public string Adresse { get; set; }
     }
 }

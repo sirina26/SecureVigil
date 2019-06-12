@@ -39,6 +39,7 @@
                 contratList:[],
                 zoneList : [],
                 missionList: [],
+                vigileList: [],
             }
         },
 

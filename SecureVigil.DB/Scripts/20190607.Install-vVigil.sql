@@ -4,10 +4,8 @@ select
 
     VigilId = t.VigilId,
     FirstName = t.FirstName,    
-    LastName = t.LastName,    
-    BeginDate = t.BeginDate,
-    EndDate  = t.EndDate,    
-    TallyBegin = t.TallyBegin,    
-    TallyEnd = t.TallyEnd 
+    LastName = t.LastName,
+    Phone = t.Phone,
+    Adresse = t.Adresse
 
 from securevigil.tVigil t;

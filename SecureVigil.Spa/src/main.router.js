@@ -20,6 +20,9 @@ import ZoneEdit from './components/zone/ZoneEdit.vue'
 
 import MissionEdit from './components/mission/MissionEdit.vue'
 
+import  VigileEdit from './components/vigile/VigileEdit.vue'
+import  VigileList from './components/vigile/VigileList.vue'
+
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
@@ -36,6 +39,9 @@ const routes = [
     { path: '/zone/:mode([create|edit]+)/:id?', component: ZoneEdit, beforeEnter: requireAuth },
 
     { path: '/mission/:mode([create|edit]+)/:id?', component: MissionEdit, beforeEnter: requireAuth },
+
+    { path: '/vigile', component: VigileList, beforeEnter: requireAuth },
+    { path: '/vigile/:mode([create|edit]+)/:id?', component: VigileEdit, beforeEnter: requireAuth },
 ];
 
 export default new VueRouter({

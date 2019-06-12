@@ -8,6 +8,8 @@ namespace SecureVigil
 
         public int ZoneId { get; set; }
 
+        public int VigilId { get; set; }
+
         public DateTime BeginDate { get; set; }
 
         public DateTime EndDate { get; set; }

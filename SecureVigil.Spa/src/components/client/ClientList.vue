@@ -38,7 +38,7 @@
                         <!--<span style="cursor: pointer;"><h2><strong><a @click.prevent="clientClicked">{{ '+' }}</a> &nbsp; Client </strong></h2></span>-->
                         <div v-for="cl in clients" :key="cl.clientId">
                 <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}
-                <router-link class="btn btn-default" target="_blank"  :to="`/contrat/create/`+cl.clientId"><i class="fa fa-plus"></i> Contrat
+                <router-link class="btn btn-default"  :to="`/contrat/create/`+cl.clientId"><i class="fa fa-plus"></i> Contrat
                    </router-link> &nbsp;
 
                     <a href="" role="button" class="green" data-toggle="modal"><button class="btn btn-warning" ><i class="fa fa-edit"></i> Détail client</button> </a>
@@ -49,7 +49,7 @@
                                 <div v-for="c in cl.contracts" :key="c.contractId">
                                     <div style="margin-left: 4em; margin-top: -1em;">
                             <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}
-                            <router-link class="btn btn-default" target="_blank" :to="`/zone/create/`+c.contractId"><i class="fa fa-plus"></i> Zone
+                            <router-link class="btn btn-default"  :to="`/zone/create/`+c.contractId"><i class="fa fa-plus"></i> Zone
                     </router-link>
                                 <!--<client-edit :mode="'edit'" :clientId ="cl.clientId"></client-edit>  -->
                             </strong></h4>
