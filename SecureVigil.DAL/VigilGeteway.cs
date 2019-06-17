@@ -33,13 +33,13 @@ namespace SecureVigil.DAL
             }
         }
 
-        public async Task<Result<int>> Create(string firstName, string lastName, string phone, string adresse )
+        public async Task<Result<int>> Create(string firstName, string LastName, string phone, string adresse )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
                 p.Add( "@FirstName", firstName );
-                p.Add( "@LastName", lastName );
+                p.Add( "@LastName", LastName );
                 p.Add( "@Phone", phone );
                 p.Add( "@Adresse", adresse  );
                 p.Add( "@VigilId", dbType: DbType.Int32, direction: ParameterDirection.Output );

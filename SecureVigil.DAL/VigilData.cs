@@ -10,7 +10,7 @@ namespace SecureVigil.DAL
 
         public string FistName { get; set; }
 
-        public string LastNAme { get; set; }
+        public string LastName { get; set; }
 
         public string Phone { get; set; }
 

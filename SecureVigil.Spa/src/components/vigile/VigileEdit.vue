@@ -77,6 +77,7 @@
             this.vigileid = this.$route.params.id;
             if(this.mode == 'edit') {
                 try {
+                    console.log("this item"+this.item.firstName);
                     const item = await getVigileAsync(this.vigileid);
                     this.item = item;
 
@@ -102,7 +103,7 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
-                            await createVigileAsync(this.item);
+                            await createVigileAsync(this.item);                                                    
                         }
 
                         this.$emit("refreshList")

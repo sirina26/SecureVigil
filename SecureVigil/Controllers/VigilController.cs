@@ -31,7 +31,7 @@ namespace SecureVigil.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVigil( [FromBody] VigilViewModel model )
         {
-            Result<int> result = await _vigilGeteway.Create( model.FistName, model.LastNAme,
+            Result<int> result = await _vigilGeteway.Create( model.FirstName, model.LastName,
                 model.Phone, model.Adresse );
             return Ok( result.Content );
         }
@@ -40,7 +40,7 @@ namespace SecureVigil.WebApp.Controllers
         public async Task<IActionResult> UpdateVigil( int id, [FromBody] VigilViewModel model )
         {
 
-            Result result = await _vigilGeteway.Update( model.VigilId, model.FistName, model.LastNAme,
+            Result result = await _vigilGeteway.Update( model.VigilId, model.FirstName, model.LastName,
                 model.Phone, model.Adresse );
             return this.CreateResult( result );
         }
