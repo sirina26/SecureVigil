@@ -105,7 +105,6 @@
                         if(this.mode == 'create') {
                             await createVigileAsync(this.item);                                                    
                         }
-
                         this.$emit("refreshList")
 
                     }

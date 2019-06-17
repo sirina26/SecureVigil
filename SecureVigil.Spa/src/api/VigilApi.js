@@ -12,3 +12,12 @@ export async function createVigileAsync(model) {
 export async function getVigileListAsync() {
     return await getAsync(endpoint);
 }
+
+export async function updateVigilAsync(model) {
+    return await putAsync(`${endpoint}/${model.vigilId}`, model);
+}
+
+export async function deleteClientAsync(clientId) {
+    return await deleteAsync(`${endpoint}/${clientId}`);
+}
+
