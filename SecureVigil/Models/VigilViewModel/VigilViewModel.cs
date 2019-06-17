@@ -10,9 +10,9 @@ namespace SecureVigil.WebApp.Models.VigilViewModel
     {
         public int VigilId { get; set; }
 
-        public string FistName { get; set; }
+        public string FirstName { get; set; }
 
-        public string LastNAme { get; set; }
+        public string LastName { get; set; }
 
         public string Phone { get; set; }
 
