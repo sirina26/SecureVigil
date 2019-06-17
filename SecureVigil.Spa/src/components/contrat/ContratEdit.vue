@@ -85,14 +85,14 @@
         props: {
             clientId:{
                 type: Number,
-                default: null
-            }
+                default: 0
+            },
+            mode: null
         },
 
         data () {
             return {
                 item: {},
-                mode: null,
                 contratid: null,
                 errors: [],
             }
@@ -100,7 +100,7 @@
 
         async mounted() {
 
-            this.item.clientId = this.clientId
+            this.item.clientId = this.clientId;
             this.mode = this.$route.params.mode;
             this.contratid = this.$route.params.id;
             if(this.mode == 'edit') {
@@ -115,7 +115,7 @@
                 }
             }
              console.log(this.item); 
-          
+             console.log("ClientId "  + this.clientId)
         },
 
         methods: {
@@ -128,19 +128,23 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
-                            this.item.clientId = this.$route.params.id;
+                            this.item.clientId = this.clientId;
+                            console.log(this.item)
                             await createContratAsync(this.item);
                         }
                         else {
                             await updateContratAsync(this.item);
                             debugger;
                         }
-                        this.$router.replace('/client');
+                        this.$emit("refreshListTree")
                     }
                     catch(e) {
                         console.error(e);
                     }
                 }
+            },
+            test(){
+                console.log(this.clientId)
             }
         }
     }

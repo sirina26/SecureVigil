@@ -38,9 +38,9 @@
                         <!--<span style="cursor: pointer;"><h2><strong><a @click.prevent="clientClicked">{{ '+' }}</a> &nbsp; Client </strong></h2></span>-->
                         <div v-for="cl in clients" :key="cl.clientId">
                 <span style="cursor: pointer;"><h4><strong><a class="btn btn-outline-info" @click.prevent="clientClicked(cl)">{{ cl.isVisible ? '-' : '+' }}</a>  Client : {{ cl.clientFirstName }} - {{ cl.clientLastName }}
-                <router-link class="btn btn-default"  :to="`/contrat/create/`+cl.clientId"><i class="fa fa-plus"></i> Contrat
-                   </router-link> &nbsp;
 
+                    <a @click='change(cl.clientId)' href="#modal-contrat" role="button"  data-toggle="modal"><button class="btn btn-default" ><i class="fa fa-plus"></i> Contrat </button> </a>
+                   &nbsp;
                     <a href="" role="button" class="green" data-toggle="modal"><button class="btn btn-warning" ><i class="fa fa-edit"></i> Détail client</button> </a>
 
                 </strong></h4></span>
@@ -51,8 +51,8 @@
                             <span style="cursor: pointer; margin-left: 30px;"><h4><strong><a class="btn btn-outline-info" style="text: white;" @click.prevent="contractClicked(c)">{{ c.isVisible ? '-' : '+' }}</a> Contrat : {{ c.contractId }} - {{ formatDate(c.contractBeginDate) }} - {{ formatDate(c.contractEndDate) }}
                             <router-link class="btn btn-default"  :to="`/zone/create/`+c.contractId"><i class="fa fa-plus"></i> Zone
                     </router-link>
-                                <!--<client-edit :mode="'edit'" :clientId ="cl.clientId"></client-edit>  -->
-                            </strong></h4>
+
+                             </strong></h4>
                             </span>
 
                                     </div>
@@ -93,6 +93,17 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
+                <div id="modal-contrat" class="modal fade" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <div class="modal-body no-padding">
+                                <contrat-edit :clientId="clientId" :mode="'create'" v-on:refreshListTree="refreshListTree"></contrat-edit>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
 
             </div>
         </div>
@@ -119,7 +130,8 @@
                 clientList: [],
                 pageNumber: 0,
                 id: 0,
-                clients: null
+                clients: null,
+                clientId: 0,
             }
         },
 
@@ -168,6 +180,15 @@
                 }
             },
 
+            async refreshListTree() {
+                try {
+                    // this.commentList = await getCommentListAsync();
+                    this.clients = await getMissionTreeAsync();
+                } catch (e) {
+                    console.error(e);
+                }
+            },
+
             async deleteClient(clientId) {
                 try {
                     await deleteClientAsync(clientId);
@@ -208,6 +229,11 @@
                 console.log(date);
                 return DateTime.fromISO(date).toFormat('dd/LL/yyyy HH:mm');
             },
+
+            change(idx){
+                console.log(idx)
+                this.clientId = idx;
+            }
 
 
         },
