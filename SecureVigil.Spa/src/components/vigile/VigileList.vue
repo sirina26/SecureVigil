@@ -28,34 +28,36 @@
 
                 <h4 class="pink">
                     <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                    <a href="#modal-vigile" role="button" class="green" data-toggle="modal"><button class="btn btn-primary" > Enregistrer un vigile</button> </a>
+                    <router-link to="/vigile/create/"><button class="btn btn-primary" > Enregistrer un vigile</button> </router-link>
                 </h4>
 
                 <br/>
 
 
-                <table class="table table-striped table-hover table-bordered">
+                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Téléphone</th>
-                        <th>Adresse</th>
-                    </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Téléphone</th>
+                            <th>Adresse</th>
+                        </tr>
                     </thead>
 
                     <tbody>
-                    <tr v-if="vigileList.length == 0">
-                        <td colspan="6" class="text-center">Il n'y a actuellement aucun vigile.</td>
-                    </tr>
+                        <tr v-if="vigileList.length == 0">
+                            <td colspan="6" class="text-center">Il n'y a actuellement aucun vigile.</td>
+                        </tr>
 
-                    <tr v-for="v of vigileList">
-                        <td>{{ v.firstName }}</td>
-                        <td>{{ v.lastName }}</td>
-                        <td>{{ v.phone}}</td>
-                        <td>{{ v.adresse }}</td>
-                    </tr>
-                    </tbody>
+                        <tr v-for="v of vigileList">
+                            <td>{{ v.lastName }}</td>
+                            <td>{{ v.firstName }}</td>
+                            <td>{{ v.phone}}</td>
+                            <td>{{ v.adresse }}</td>
+
+
+                        </tr>
+                        </tbody>
                 </table>
                 <button
                         :disabled="pageNumber === 0"
