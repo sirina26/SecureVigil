@@ -26,7 +26,7 @@ namespace SecureVigil.DAL
 
                         s.VigilId,
                         s.FirstName,
-                        s.LastNAme,
+                        s.LastName,
                         s.Phone, 
                         s.Adresse
                     From securevigil.vVigil s" );
@@ -49,7 +49,7 @@ namespace SecureVigil.DAL
                 int status = p.Get<int>( "@Status" );
 
                 Debug.Assert( status == 0 );
-                return Result.Success( Status.Created, p.Get<int>( "@ClientId" ) );
+                return Result.Success( Status.Created, p.Get<int>( "@VigilId" ) );
             }
         }
 
